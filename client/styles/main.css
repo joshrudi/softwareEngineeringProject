@@ -1,0 +1,74 @@
+#searchBar {
+  margin: 15px 10px;
+}
+
+.tableWrapper {
+  max-height: 400px;
+  overflow: auto;
+}
+
+.title {
+	color: rgb(0,75,160);
+	font-size: 50px;
+	font-family: "Times New Roman", Times, serif;
+}
+
+.transparent {
+	background-color: rgba(238,238,238,0.4);
+}
+
+.lessTransparent {
+	background-color: rgba(238,238,238,0.7);
+}
+
+.codeColumn {
+	background-color: rgba(200,82,0,0.4);
+}
+
+.nameColumn {
+	background-color: rgba(0,75,160,0.4);
+}
+
+body {
+    background-image: linear-gradient(to bottom right, rgba(0,75,160,0.5), rgba(200,82,0,0.3)), url(texture.png);
+    background-position: center; 
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+button {
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 12px;
+  transition-duration: 0.4s;
+}
+
+.add {
+  padding: 15px 32px;
+  background-color: rgba(255,255,255,0.4);
+  color: green;
+  border: 2px solid green;
+}
+
+.add:hover {
+  padding: 15px 32px;
+  background-color: green;
+  color: white;
+  border: 2px solid green;
+}
+
+.delete {
+  background-color: rgba(255,255,255,0.4);
+  color: red;
+  border-radius: 50%;
+  border: 2px solid red;
+}
+
+.delete:hover {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  border: 2px solid red;
+}
