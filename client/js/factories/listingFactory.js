@@ -1,3 +1,6 @@
+/*Alihan Uzunoglu*/
+
+
 angular.module('listings', []).factory('Listings', function($http) {
   var methods = {
     getAll: function() {
