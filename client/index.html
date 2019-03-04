@@ -1,58 +1,40 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<head>
+    <meta charset="utf-8">
+    <title>TweetData</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="icon.png">
     <link rel="stylesheet" href="styles/main.css">
-  </head>
-  <body ng-app="directoryApp">
-    <div class="container">
-      <div class="row">
-        <h1 class="title">UF Directory App</h1>
-      </div>
-      <div class="row" ng-controller="ListingsController">
-        <div class="col-md-6">
-          <div class="input-group" id="searchBar">
-            <span class="input-group-addon lessTransparent" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
-            <input type="text" class="form-control transparent" placeholder="Search" ng-model="query">
-          </div>
-          <div class="tableWrapper">
-            <table class="table table-striped table-hover">
-              <tr>
-                <th class="codeColumn">Code</th>
-                <th class="nameColumn">Building Name</th>
-                <th class="nameColumn"></th>
-              </tr>
-              <tr ng-repeat="listing in listings | filter: query" ng-click="showDetails($index)">
-                <td class="codeColumn">{{listing.code}}</td>
-                <td class="nameColumn">{{listing.name}}</td>
-                <td class="nameColumn" ng-click="deleteListing(listing._id)"><span style="color: red;" class="glyphicon glyphicon-remove"></span></td>
-              </tr>
-            </table>
-          </div>
-          <form novalidate class="simple-form">
-            <h2>Add New Listing</h2>
-            Code: <input type="text" ng-model="newListing.code" class="form-control transparent" placeholder="ex: 'NEB'"/><br />
-            Name: <input type="text" ng-model="newListing.name" class="form-control transparent" placeholder="ex: 'New Engineering Building'"/><br />
-            Address: <input type="text" ng-model="newListing.address" class="form-control transparent" placeholder="ex: '1064 Center Dr, Gainesville, FL 32611'"/><br />
-            <button class="btn btn-primary button add" ng-click="addListing()">Add Listing</button>
-          </form>
-          <br>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</head>
+<body>
+<div id="webApp">
+    <div id="sideBar">
+        <div id="sideBarItems">
+            <div id="search">
+                <input class="searchBox" type="text" placeholder="Categories">
+                <i class="fas fa-search searchIcon"></i>
+            </div>
+            <h4 class="sideBarItem">Contact Admin</h4>
+            <h4 class="sideBarItem">Collapse Menu</h4>
         </div>
-        <div class="col-md-6">
-          <div class="jumbotron transparent">
-            <h2>Detailed Information</h2>
-            <h4>{{detailedInfo.name}}</h4>
-            <p>Address: {{detailedInfo.address}}</p>
-            <p>Building Code: {{detailedInfo.code}}</p>
-          </div>
-        </div>
-      </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
-    <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/factories/listingFactory.js"></script>
-    <script src="js/controllers/listingController.js"></script>
-  </body>
+    
+    <div id="content">
+        <h1 class="title">Stats For All Users In Gainesville</h1>
+        <div id="chartContainer">
+            <canvas id="barChart"></canvas>
+        </div>
+        <h2 class="title">Trending In This Region</h2>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script src="js/chart.js"></script>
+
+</body>
 </html>
