@@ -1,74 +1,87 @@
-#searchBar {
-  margin: 15px 10px;
+#webApp{
+    width: 90%;
+    height: auto;
+    margin: 10px;
+    padding: 10px;
+    font-family: Arial, sans-serif;
 }
 
-.tableWrapper {
-  max-height: 400px;
-  overflow: auto;
+#sideBar{
+    height: 100vh;
+    width: 200px;
+    background-color: #6CC2EE;
+    display: inline-block;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
-.title {
-	color: rgb(0,75,160);
-	font-size: 50px;
-	font-family: "Times New Roman", Times, serif;
+#sideBarItems{
+    padding: 20px;
+    width: auto;
+    height: auto;
 }
 
-.transparent {
-	background-color: rgba(238,238,238,0.4);
+#content{
+    margin-left: 200px;
+    width: 90%;
+    height: auto;
+    align-items: center;
+    position: relative;
+    display: block;
 }
 
-.lessTransparent {
-	background-color: rgba(238,238,238,0.7);
+#chartContainer{
+    width: 100%;
+    height: auto;
+    display: inline-block;
 }
 
-.codeColumn {
-	background-color: rgba(200,82,0,0.4);
-}
-
-.nameColumn {
-	background-color: rgba(0,75,160,0.4);
-}
-
-body {
-    background-image: linear-gradient(to bottom right, rgba(0,75,160,0.5), rgba(200,82,0,0.3)), url(texture.png);
-    background-position: center; 
-    font-family: Arial, Helvetica, sans-serif;
+#search{
+    width: 75%;
+    height: 40px;
+    position: absolute;
+    align-items: center;
 
 }
 
-button {
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  border-radius: 12px;
-  transition-duration: 0.4s;
+.searchBox{
+    display: inline-block;
+    width: 100%;
+    border-radius: 15px;
+    border: 1px darkblue solid;
+    padding: 5px 5px 5px 25px;
+    position: absolute;
+    margin: auto;
+    
 }
 
-.add {
-  padding: 15px 32px;
-  background-color: rgba(255,255,255,0.4);
-  color: green;
-  border: 2px solid green;
+.searchIcon{
+    z-index: 1;
+    position: absolute;
+    top: 10px;
+    left: 5px;
 }
 
-.add:hover {
-  padding: 15px 32px;
-  background-color: green;
-  color: white;
-  border: 2px solid green;
+.title{
+    display: block;
+    text-align: center;
 }
 
-.delete {
-  background-color: rgba(255,255,255,0.4);
-  color: red;
-  border-radius: 50%;
-  border: 2px solid red;
+.sideBarItem{
+    display: block;
+    text-align: center;
+    position: relative;
+    padding: 10px;
+    margin-top: 40px;
+    color: white;
 }
 
-.delete:hover {
-  background-color: red;
-  color: white;
-  border-radius: 50%;
-  border: 2px solid red;
+.sideBarItem:hover{
+    color: #1CA1F0;
+    cursor: pointer;
+}
+
+i:hover{
+    cursor: pointer;
 }
