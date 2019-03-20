@@ -13,6 +13,8 @@ router.route('/')
   .get(listings.list)
   .post(listings.create);
 
+// Client ID: 1062776272507-cu3jrfvoh587svb9qrifs7fqkhhsc5rq.apps.googleusercontent.com
+// Client Secret: K1gFMjAESjclhg4mxz8evmtA
 
 /*
   The ':' specifies a URL parameter.
