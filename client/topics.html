@@ -30,7 +30,7 @@
                         <a class="nav-link" href="trending.html">Trending</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="advancedsearch.html">Advanced Search</a>
+                  <a class="nav-link" data-toggle="modal" data-target="#advancedPopup" style="cursor: pointer; text-decoration: none;"> Advanced Search </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="contactadmin.html">Contact Admin</a>
@@ -53,12 +53,40 @@
         </div>
 
         <ul class="list-group">
-          <a href="#" class="list-group-item list-group-item-action">Topic#1</a>
-          <a href="#" class="list-group-item list-group-item-action">Topic#2</a>
-          <a href="#" class="list-group-item list-group-item-action">Topic#3</a>
-          <a href="#" class="list-group-item list-group-item-action">Topic#4</a>
-          <a href="#" class="list-group-item list-group-item-action">Topic#5</a>
+          <a data-toggle="collapse" href="#topic1Tweets" role="button" aria-expanded="false" aria-controls="topic1Tweets" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">Topic#1
+            <span class="badge badge-primary badge-pill">1200</span>
+          </a>
+          <div class="collapse" id="topic1Tweets">
+            <div class="card card-body">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6">
+                      <blockquote class="twitter-tweet" data-cards="hidden" data-lang="en"><p lang="en" dir="ltr">&quot;I just remembered that it was like a constant battle between how much I&#39;m gonna put into studying and how much I&#39;m going to put into competing at tournaments.&quot;<br><br>-<a href="https://twitter.com/LiquidHbox?ref_src=twsrc%5Etfw">@LiquidHbox</a> on being a student and a professional esports player. <a href="https://twitter.com/KontruL?ref_src=twsrc%5Etfw">@KontruL</a> <a href="https://twitter.com/TeamLiquid?ref_src=twsrc%5Etfw">@TeamLiquid</a> <a href="https://twitter.com/NBA2KLeague?ref_src=twsrc%5Etfw">@NBA2KLeague</a> <a href="https://twitter.com/LakersGaming?ref_src=twsrc%5Etfw">@LakersGaming</a> <a href="https://t.co/RASJMyMX7y">pic.twitter.com/RASJMyMX7y</a></p>&mdash; FLORIDA (@UF) <a href="https://twitter.com/UF/status/1110572769916399616?ref_src=twsrc%5Etfw">March 26, 2019</a></blockquote>
+                  </div>
+                  <div class="col-md-6">
+                      <blockquote class="twitter-tweet" data-cards="hidden" data-lang="en"><p lang="en" dir="ltr">Level Up w/ Dr. Feihong Wang, lecturer in the Dept of Psychology. Learn how <a href="https://twitter.com/NCFDD?ref_src=twsrc%5Etfw">@NCFDD</a> programs gave her a sense of empowerment &amp; control over her long-term personal and professional goals. <a href="https://t.co/ZMecAa4TCQ">https://t.co/ZMecAa4TCQ</a> Visit <a href="https://t.co/JBJBR0rpcJ">https://t.co/JBJBR0rpcJ</a> to join today! <a href="https://twitter.com/hashtag/belonging?src=hash&amp;ref_src=twsrc%5Etfw">#belonging</a> <a href="https://twitter.com/hashtag/presence?src=hash&amp;ref_src=twsrc%5Etfw">#presence</a> <a href="https://t.co/fqtqopIJXs">pic.twitter.com/fqtqopIJXs</a></p>&mdash; Antonio Farias (@GatorCDO) <a href="https://twitter.com/GatorCDO/status/1110504713697542145?ref_src=twsrc%5Etfw">March 26, 2019</a></blockquote>
+                  </div>
+                </div>
+                </div>
+            </div>
+          </div>
+
+          <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">Topic#2
+            <span class="badge badge-primary badge-pill">900</span>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">Topic#3
+            <span class="badge badge-primary badge-pill">700</span>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">Topic#4
+            <span class="badge badge-primary badge-pill">500</span>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">Topic#5
+            <span class="badge badge-primary badge-pill">400</span>
+          </a>
         </ul>
+
+        
+
       </main>
       
             
@@ -71,5 +99,10 @@
                   <li class="list-inline-item"><a href="#">Support</a></li>
                 </ul>
             </footer>
+
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     </body>
 </html>
