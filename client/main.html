@@ -32,7 +32,8 @@
                                 <a class="nav-link" href="trending.html">Trending</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="advancedsearch.html">Advanced Search</a>
+                            <!-- Controls popup for advanced search -->
+                            <a class="nav-link" data-toggle="modal" data-target="#advancedPopup" style="cursor: pointer; text-decoration: none;"> Advanced Search </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="contactadmin.html">Contact Admin</a>
@@ -45,6 +46,113 @@
                       </form>
                     </div>
             </nav>
+
+            <!-- Popup for advanced search -->
+            <div class="modal fade in" id="advancedPopup" tabindex="-1" role="dialog" aria-labelledby="advancedModalLabel" aria-hidden="true"> 
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                             <p id="advancedModalLabel" class="modal-title popup">Advanced Search</p>
+
+                        </div>
+                        <div class="modal-body" ng-repeat="search in history"> <!-- Iterates through saved history -->
+                          <div class="container">
+                              <div class="py-5 text-center">
+                              <img class="d-block mx-auto mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+                              <h1>Twitter Advanced Search</h2>
+                              <p class="lead"><i>You can make advanced searches here!</i></p>
+                          </div>
+
+                          <div class="col-md-10 order-md-1">
+                            <h5 class="mb-1"><strong>Words</strong></h5>
+                            <form class="word-class">
+                              <div class="row">
+                                  <div class="col-md-10 mb-1">
+                                      <label for="firstColumn">All of these words</label>
+                                      <input type="text" class="form-control" placeholder="Enter a word">
+                                  </div>
+                                  <div class="col-md-10 mb-1">
+                                      <label for="secondColumn">This exact phrase</label>
+                                      <input type="text" class="form-control"  placeholder="Enter a phrase">
+                                  </div>
+                                  <div class="col-md-10 mb-1">
+                                      <label for="thirdColumn">Any of these words</label>
+                                      <input type="text" class="form-control"  placeholder="Enter any word">
+                                  </div>
+                                  <div class="col-md-10 mb-1">
+                                      <label for="fourthColumn">None of these words</label>
+                                      <input type="text" class="form-control" placeholder="Enter any word">
+                                  </div>
+                                  <div class="col-md-10 mb-1">
+                                      <label for="fifthColumn">These Hastags</label>
+                                      <input type="text" class="form-control" placeholder="Enter the hastags">
+                                  </div>
+                                  <div class="col-md-3 mb-1>
+                                      <label for="sixthColumn">Written in</label>
+                                      <div class="form-group">
+                                                <select class="form-control" id="sel1">
+                                                  <option>All Languages</option>  
+                                                  <option>English</option>
+                                                  <option>French</option>
+                                                  <option>Italian</option>
+                                                  <option>Russian</option>
+                                                </select>
+                                              </div>
+                                          </div>
+                                      </div>   
+                                  </div>
+                                  <div class="col-md-10 order-md-1">
+                                          <h5 class="mb-1"><strong>People</strong></h5>
+                                          <form class="word-class">
+                                            <div class="row">
+                                                <div class="col-md-10 mb-1">
+                                                    <label for="firstColumn">From these accounts</label>
+                                                    <input type="text" class="form-control" placeholder="Enter an account">
+                                                </div>
+                                                <div class="col-md-10 mb-1">
+                                                    <label for="secondColumn">To these accounts</label>
+                                                    <input type="text" class="form-control"  placeholder="Enter an account">
+                                                </div>
+                                                <div class="col-md-10 mb-1">
+                                                    <label for="thirdColumn">Mentioning these accounts</label>
+                                                    <input type="text" class="form-control"  placeholder="Enter an account">
+                                                </div>   
+                                           </div>
+                                  </div>
+                                  <div class="col-md-10 order md-1">
+                                          <h5 class="mb-1"><strong>Dates</strong></h5>
+                                          <input id="datepicker" width="270" />
+                                          <script>
+                                              $('#datepicker').datepicker({
+                                                  uiLibrary: 'bootstrap4'
+                                              });
+                                          </script>
+                                          <br>
+                                          <button type="button" class="btn btn-primary col-md-1.5 mb-2">Search</button>
+                                  </div>
+                                  <footer class="my-5 pt-5 text-muted text-center text-small">
+                                          <p>Copyright Twitter, &copy; 2019</p>
+                                          <ul class="list-inline">
+                                            <li class="list-inline-item"><a href="#">Privacy</a></li>
+                                            <li class="list-inline-item"><a href="#">Terms</a></li>
+                                            <li class="list-inline-item"><a href="#">Support</a></li>
+                                          </ul>
+                                  </footer>
+                                </div>
+                              </form>
+                            </div>
+
+                        <div class="modal-footer">
+                            
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Dismiss</button> <!-- Dismiss Popup -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                       <h1 class="h2">Dashboard</h1>
