@@ -61,10 +61,11 @@
           console.log('Name: ' + profile.getName());
           console.log('Image URL: ' + profile.getImageUrl());
           console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-          window.open('index.html');
+          window.open('index.html',"_self");
         }
 
         function signOut() {
+          window.open('index.html',"_self"); //temp to sign in until put on the right server
           var auth2 = gapi.auth2.getAuthInstance();
           auth2.signOut().then(function () {
             console.log('User signed out.');
