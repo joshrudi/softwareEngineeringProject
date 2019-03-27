@@ -44,9 +44,12 @@
                   <i class="material-icons">more_vert</i>
                 </button>
                 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="appBarHam">
-                  <li class="mdl-menu__item">Share</li>
-                  <li class="mdl-menu__item">Export</li>
-                  <li class="mdl-menu__item">Refresh</li>
+                  <a>
+                        <li class="mdl-menu__item" onclick="help();">Help</li>
+                  </a>
+                  <a href="index.html">
+                      <li class="mdl-menu__item">Refresh</li>
+                  </a>
                 </ul>
               </nav>
             </div>
@@ -76,6 +79,7 @@
                         <span class="mdc-list-item__text">Contact Admin</span>
                     </a>
                 </nav>
+
             </div>
             </div>
             <main class="mdl-layout__content">
@@ -90,63 +94,44 @@
                         </button>
                         <br>
                         <br>
-                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="background-color: #9c27b0;">
-                          <i class="material-icons">share</i>
-                          Share
-                        </button>
-                        <br>
-                        <br>
-                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="background-color: #4caf50;">
-                          <i class="material-icons">import_export</i>
-                          Export
-                        </button>
 
                     </div>
 
                     <br>
 
-                    <div class="container">
-                            <canvas id="myChart"></canvas>
-                    </div>
+                      <canvas id="myChart" style="width: 100%;"></canvas>
 
-                    <div class="mdc-layout-grid">
-                      <div class="mdc-layout-grid__inner">
-                        <div class="mdc-layout-grid__cell"></div>
-                        <div class="mdc-layout-grid__cell">
-                            <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-                              <thead>
-                                <tr>
-                                  <th class="mdl-data-table__cell--non-numeric">City</th>
-                                  <th># of Tweets</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td class="mdl-data-table__cell--non-numeric">Boston</td>
-                                  <td>12312</td>
-                                </tr>
-                                <tr>
-                                  <td class="mdl-data-table__cell--non-numeric">Worscester</td>
-                                  <td>12312</td>
-                                </tr>
-                                <tr>
-                                  <td class="mdl-data-table__cell--non-numeric">Cambridge</td>
-                                  <td>3231</td>
-                                </tr>
-                                <tr>
-                                  <td class="mdl-data-table__cell--non-numeric">Lowell</td>
-                                  <td>31231</td>
-                                </tr>
-                                <tr>
-                                  <td class="mdl-data-table__cell--non-numeric">New Orleans</td>
-                                  <td>21211</td>
-                                </tr>
-                              </tbody>
-                            </table>
-                        </div>
-                        <div class="mdc-layout-grid__cell"></div>
-
-                      </div>
+                    <div style="padding: 15px;">
+                      <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width: 100%;">
+                        <thead>
+                          <tr>
+                            <th class="mdl-data-table__cell--non-numeric">City</th>
+                            <th># of Tweets</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Boston</td>
+                            <td>12312</td>
+                          </tr>
+                          <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Worscester</td>
+                            <td>12312</td>
+                          </tr>
+                          <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Cambridge</td>
+                            <td>3231</td>
+                          </tr>
+                          <tr>
+                            <td class="mdl-data-table__cell--non-numeric">Lowell</td>
+                            <td>31231</td>
+                          </tr>
+                          <tr>
+                            <td class="mdl-data-table__cell--non-numeric">New Orleans</td>
+                            <td>21211</td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
 
                 </div>
@@ -267,7 +252,15 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
         crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>   
+        crossorigin="anonymous"></script>  
+        <script>
+          
+          function help() {
+
+            alert("You can view graphs from this page, search using the sear bar or navigate to other pages using the menu expandable though the button on the top left.");
+          }
+
+        </script> 
 
 
     </body>
