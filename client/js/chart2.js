@@ -34,15 +34,15 @@ let myChart = document.getElementById('myChart').getContext('2d');
                         },
                         options:{
                           title:{
-                            display:true,
+                            display:false,
                             text: 'Most Popular Tweets',
-                            fontSize:25,
+                            fontSize: 15,
                           },
                           legend:{
                             display:false,
                             position:'right',
                             labels:{
-                              fontColor: 'white',
+                              fontColor: 'black',
                             }
                           },
                           layout:{
@@ -52,6 +52,18 @@ let myChart = document.getElementById('myChart').getContext('2d');
                               bottom:10,
                               top:10
                             }
+                          },
+                          scales: {
+                              xAxes: [{
+                                  ticks: {
+                                      fontSize: 15
+                                  }
+                              }],
+                              yAxes: [{
+                                  ticks: {
+                                      fontSize: 15
+                                  }
+                              }]
                           }
                         }
                       });
