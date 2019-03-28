@@ -14,4 +14,7 @@ router.route('/get_trending')
 router.route('/get_topic_cards')
 	.post(listings.get_topic_cards);
 
+router.route('/get_regions')
+	.get(listings.get_regions);
+
 module.exports = router;

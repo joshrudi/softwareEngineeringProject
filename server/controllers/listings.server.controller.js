@@ -65,3 +65,9 @@ function recurse_get_topic_cards(statuses, html_list, res) {
 		recurse_get_topic_cards(statuses, html_list, res);
 	});
 }
+
+exports.get_regions = function(req, res) {
+	T.get('trends/available', function(err, data, response) {
+		res.send(data);
+	});
+}
