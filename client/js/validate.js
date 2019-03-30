@@ -13,7 +13,8 @@ function read_cookie() {
 }
 
 function validate_website() {
-	var id_token = read_cookie().id_token;
+	var guk = "G_ENABLED_IDPS=google; G_AUTHUSER_H=0; G_ENABLED_IDPS=google; ";
+	var id_token = read_cookie().id_token.replace(guk, "");
 	console.log(id_token);
 	console.log(read_cookie().user_id);
 
