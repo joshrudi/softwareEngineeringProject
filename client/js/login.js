@@ -1,6 +1,6 @@
 function onSignIn(googleUser) {
 	var id_token = googleUser.getAuthResponse().id_token;
-	var user_id = googleUser.getBasicProfile().getId();
+	var user_id = "" + googleUser.getBasicProfile().getId();
 
 	var cookie = {
 		id_token: id_token,
