@@ -32,7 +32,7 @@ exports.send_email = function(req, res) {
 
 	var mailOptions = {
 		from: 'no.reply.5583to@gmail.com',
-		to: 'jrudaitis@ufl.edu',
+		to: 'williamjr@ufl.edu',
 		subject: 'Issue Report',
 		text: "RESPOND TO: " + email + '\n' + issues
 	};
