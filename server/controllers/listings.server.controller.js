@@ -108,9 +108,10 @@ exports.update_listing = function(req, res) {
 		if (listing == null) {
 			upsertData.woeid = 0;
 			upsertData.region_name = "Worldwide"; // Defaults
+		} else {
+			upsertData._id = listing._id;
 		}
 
-		upsertData._id = listing._id;
 		Listing.update({ user_id: upsertData.user_id }, upsertData, {upsert: true}, function(err, listing) {
 			if (err) {
 				console.log(err);
