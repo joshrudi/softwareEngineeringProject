@@ -71,3 +71,16 @@ exports.get_regions = function(req, res) {
 		res.send(data);
 	});
 }
+
+
+const {OAuth2Client} = require('google-auth-library');
+const client = new OAuth2Client("1062776272507-cu3jrfvoh587svb9qrifs7fqkhhsc5rq");
+
+exports.validate_token = function(req, res) {
+	const ticket = client.verifyIdToken({
+        idToken: req.body.id_token,
+        audience: "1062776272507-cu3jrfvoh587svb9qrifs7fqkhhsc5rq"
+    });
+    const payload = ticket.getPayload();
+    const userid = payload['sub'];
+}
