@@ -1,13 +1,14 @@
 function onSignIn(googleUser) {
-	console.log("HI");
-	
 	var id_token = googleUser.getAuthResponse().id_token;
 	var user_id = googleUser.getBasicProfile().getId();
 
-	var cookie = read_cookie();
-	cookie.id_token = id_token;
-	cookie.user_id = user_id;
+	var cookie = {
+		id_token: id_token,
+		user_id: user_id
+	};
+
 	write_cookie(cookie);
+	console.log(cookie);
 
 	$.ajax({
 		url: "/update_listing",
