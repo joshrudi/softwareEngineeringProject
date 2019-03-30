@@ -17,6 +17,7 @@
         <script src="https://apis.google.com/js/platform.js" async defer></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="js/validate.js"></script>
+		<script src="js/login.js"></script>
     </head>
   <body>
 
@@ -52,30 +53,6 @@
                 <li class="list-inline-item"><a href="#">Support</a></li>
               </ul>
       </footer>
-
-      <script>
-        function help() {
-
-          alert("Click on 'Get Started' to sign in and continue.  You will be asked to use your Google account to proceed.");
-        }
-
-        function onSignIn(googleUser) {
-          var profile = googleUser.getBasicProfile();
-          console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-          console.log('Name: ' + profile.getName());
-          console.log('Image URL: ' + profile.getImageUrl());
-          console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-          window.open('index.html',"_self");
-        }
-
-        function signOut() {
-          window.open('index.html',"_self"); //temp to sign in until put on the right server
-          var auth2 = gapi.auth2.getAuthInstance();
-          auth2.signOut().then(function () {
-            console.log('User signed out.');
-          });
-        }
-      </script>
 
     </div>
 
