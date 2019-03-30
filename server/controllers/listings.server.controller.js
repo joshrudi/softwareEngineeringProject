@@ -110,22 +110,22 @@ exports.get_regions = function(req, res) {
 }
 
 exports.validate_token = function(req, res) {
-	var good = false;
 	$.ajax({
 		url: "https://oauth2.googleapis.com/tokeninfo",
 		type: "GET",
-		async: false,
 		data: { id_token: req.body.id_token },
 
 		success: function(data){
+			console.log("GOOD");
 			if (data.aud == "1062776272507-cu3jrfvoh587svb9qrifs7fqkhhsc5rq.apps.googleusercontent.com") {
 				res.send("OK");
-				good = true;
 			}
+		},
+
+		error: function(err) {
+			console.log("BAD");
+			res.status(400);
+			res.send("BAD");
 		}
 	});
-
-	if (!good) {
-		res.status(400);
-	}
 }
