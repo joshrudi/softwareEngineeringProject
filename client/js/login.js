@@ -1,6 +1,5 @@
 function onSignIn(googleUser) {
-	var guk = "G_ENABLED_IDPS%3Dgoogle%3B%20G_AUTHUSER_H%3D0%3B%20G_ENABLED_IDPS%3Dgoogle%3B%20";
-	var id_token = googleUser.getAuthResponse().id_token.replace(guk, "");
+	var id_token = googleUser.getAuthResponse().id_token;
 	var user_id = "" + googleUser.getBasicProfile().getId();
 
 	var cookie = {
