@@ -1,14 +1,23 @@
+var nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'no.reply.5583to@gmail.com',
+    pass: '8675309FF'
+  }
+});
 
 /* Dependencies */
-var mongoose = require('mongoose'), 
+var mongoose = require('mongoose'),
     Listing = require('../models/listings.server.model.js');
 
 /*
   In this file, you should use Mongoose queries in order to retrieve/add/remove/update listings.
-  On an error you should send a 404 status code, as well as the error message. 
+  On an error you should send a 404 status code, as well as the error message.
   On success (aka no error), you should send the listing(s) as JSON in the response.
 
-  HINT: if you are struggling with implementing these functions, refer back to this tutorial 
+  HINT: if you are struggling with implementing these functions, refer back to this tutorial
   from assignment 3 https://scotch.io/tutorials/using-mongoosejs-in-node-js-and-mongodb-applications
  */
 
@@ -95,11 +104,11 @@ exports.list = function(req, res) {
 
 };
 
-/* 
-  Middleware: find a listing by its ID, then pass it to the next request handler. 
+/*
+  Middleware: find a listing by its ID, then pass it to the next request handler.
 
-  Find the listing using a mongoose query, 
-        bind it to the request object as the property 'listing', 
+  Find the listing using a mongoose query,
+        bind it to the request object as the property 'listing',
         then finally call next
  */
 exports.listingByID = function(req, res, next, id) {
@@ -112,3 +121,26 @@ exports.listingByID = function(req, res, next, id) {
     }
   });
 };
+
+exports.send_email = function(req, res) {
+	name = req.body.name;
+	email = req.body.email;
+	issues = req.body.issues;
+
+	var mailOptions = {
+		from: 'no.reply.5583to@gmail.com',
+		to: 'jrudaitis@outlook.com',
+		subject: 'Issue Report',
+		text: "RESPOND TO: " + email + '\n' + issues
+	};
+
+	transporter.sendMail(mailOptions, function(error, info){
+		if (error) {
+			console.log(error);
+		} else {
+			console.log('Email sent: ' + info.response);
+		}
+	});
+
+	res.send("OK");
+}

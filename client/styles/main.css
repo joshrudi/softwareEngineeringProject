@@ -1,3 +1,27 @@
+h1.darkThemeText {
+    color: white;
+}
+
+h2.darkThemeText {
+    color: white;
+}
+
+button.darkThemeButton {
+    color: white;
+}
+
+th {
+    color: white;
+}
+
+tr {
+    color: white;
+}
+
+
+/*  Above Josh/main.html
+    Below Pablo/index.html */
+
 #webApp{
     width: 90%;
     height: auto;
