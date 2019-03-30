@@ -1,16 +1,7 @@
 function onSignIn(googleUser) {
 	var id_token = googleUser.getAuthResponse().id_token;
-	console.log("ID Token: " + id_token);
-
-	$.ajax({
-		url: "/validate_token",
-		type: "POST",
-		data: { id_token: id_token },
-		success: function(data){
-			write_cookie(id_token);
-			window.location.href = "/index.html"; // Redirect
-		}
-	});
+	write_cookie(id_token);
+	window.location.href = "/index.html"; // Redirect
 }
 
 function signOut() {
