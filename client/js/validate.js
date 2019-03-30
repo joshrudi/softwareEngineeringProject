@@ -1,10 +1,9 @@
 function write_cookie(cookie) {
-    document.cookie = cookie.id_token + "|";
-	document.cookie += cookie.user_id + "|";
+    document.cookie = cookie.id_token + "||||" + cookie.user_id;
 }
 
 function read_cookie() {
-	var bits = document.cookie.split("|");
+	var bits = document.cookie.split("||||");
 	var cookie = {
 		id_token: bits[0],
 		user_id: bits[1],
@@ -15,6 +14,8 @@ function read_cookie() {
 function validate_website() {
 	var guk = "G_ENABLED_IDPS=google; G_AUTHUSER_H=0; G_ENABLED_IDPS=google; ";
 	var id_token = read_cookie().id_token.replace(guk, "");
+
+	console.log(document.cookie);
 	console.log(id_token);
 	console.log(read_cookie().user_id);
 
