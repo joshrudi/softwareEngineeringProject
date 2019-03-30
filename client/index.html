@@ -83,6 +83,7 @@
             </div>
             </div>
             <main class="mdl-layout__content">
+              
                 <div class="page-content">
 
                     <br>
@@ -105,37 +106,47 @@
                       <canvas id="myChart" style="width: 100%;"></canvas>
                     </div>
 
-                    <div style="padding: 15px;">
-                      <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width: 100%;">
-                        <thead>
-                          <tr>
-                            <th class="mdl-data-table__cell--non-numeric">City</th>
-                            <th># of Tweets</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td class="mdl-data-table__cell--non-numeric">Boston</td>
-                            <td>12312</td>
-                          </tr>
-                          <tr>
-                            <td class="mdl-data-table__cell--non-numeric">Worscester</td>
-                            <td>12312</td>
-                          </tr>
-                          <tr>
-                            <td class="mdl-data-table__cell--non-numeric">Cambridge</td>
-                            <td>3231</td>
-                          </tr>
-                          <tr>
-                            <td class="mdl-data-table__cell--non-numeric">Lowell</td>
-                            <td>31231</td>
-                          </tr>
-                          <tr>
-                            <td class="mdl-data-table__cell--non-numeric">New Orleans</td>
-                            <td>21211</td>
-                          </tr>
-                        </tbody>
-                      </table>
+                    <div style="padding: 15px;" align="center">
+
+                      <h3>Select Region</h3>                      
+
+                      <div ng-controller="RegionsController">
+                        <div align="center">
+                          <main class="mdl-layout__content">
+
+                            <div class="input-group" id="searchBar">
+
+                              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+
+                                <input class="mdl-textfield__input" type="text" id="regionSearch" ng-model="query">
+                                <label class="mdl-textfield__label" for="regionSearch">Search</label>
+
+                              </div>
+
+                            </div>
+
+                          </main>
+                          <div class="tableWrapper">
+                            <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                              <thead>
+                                <tr>
+                                  <th class="mdl-data-table__cell--non-numeric">Region Name</th>
+                                  <th>ID</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr ng-repeat="region in (filteredList = (regions | filter: query))" ng-click="changeRegion($index)">
+
+                                    <th>{{ region.name }}</th>
+                                    <th>{{ region.name }}</th>
+
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+
                     </div>
 
                 </div>
