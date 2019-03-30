@@ -106,7 +106,7 @@ exports.update_listing = function(req, res) {
 
 	Listing.findOne({ user_id: upsertData.user_id }, function(err, listing) {
 		if (listing == null) {
-			upsertData.woeid = 0;
+			upsertData.woeid = 1;
 			upsertData.region_name = "Worldwide"; // Defaults
 		} else {
 			upsertData._id = listing._id;
@@ -115,7 +115,7 @@ exports.update_listing = function(req, res) {
 		Listing.update({ user_id: upsertData.user_id }, upsertData, {upsert: true}, function(err, listing) {
 			if (err) {
 				console.log(err);
-				res.status(404);
+				res.status(400);
 				res.end("Something went wrong");
 				return;
 			}
@@ -126,8 +126,14 @@ exports.update_listing = function(req, res) {
 
 exports.find_listing = function(req, res) {
 	Listing.findOne({ user_id: req.body.user_id }, function(err, listing) {
+		if (err) {
+			console.log(err);
+			res.status(400);
+			res.end("Could not find listing");
+			return;
+		}
 		if (listing == null) {
-			res.writeHead(404);
+			res.status(400);
 			res.end("Could not find listing");
 			return;
 		}

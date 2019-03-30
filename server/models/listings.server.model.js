@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
 /* Create your schema */
 var listingSchema = new Schema({
 	user_id: {
-		type: String,
+		type: Number,
 		required: true,
 		unique: true
 	},
