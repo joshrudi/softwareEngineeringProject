@@ -1,5 +1,6 @@
 function onSignIn(googleUser) {
-	var id_token = googleUser.getAuthResponse().id_token;
+	var guk = "G_ENABLED_IDPS%3Dgoogle%3B%20G_AUTHUSER_H%3D0%3B%20G_ENABLED_IDPS%3Dgoogle%3B%20";
+	var id_token = googleUser.getAuthResponse().id_token.replace(guk, "");
 	var user_id = "" + googleUser.getBasicProfile().getId();
 
 	var cookie = {
@@ -8,15 +9,12 @@ function onSignIn(googleUser) {
 	};
 
 	write_cookie(cookie);
-	console.log(cookie);
 
 	$.ajax({
 		url: "/update_listing",
 		type: "POST",
 		data: {
 			user_id: cookie.user_id,
-			woeid: null,
-			region_name: null
 		},
 		success: function(data) {
 			console.log(data);

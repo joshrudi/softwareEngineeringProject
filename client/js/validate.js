@@ -23,7 +23,6 @@ function validate_website() {
 		success: function(data){
 			if (data.aud != "1062776272507-cu3jrfvoh587svb9qrifs7fqkhhsc5rq.apps.googleusercontent.com") {
 				//window.location.href = "/login.html"; // Redirect
-				console.log("A");
 				return;
 			}
 			console.log("Token Valid");
@@ -31,7 +30,6 @@ function validate_website() {
 
 		error: function(err) {
 			//window.location.href = "/login.html"; // Redirect
-			console.log("B");
 		}
 	});
 }
