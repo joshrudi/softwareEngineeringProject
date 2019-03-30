@@ -15,10 +15,6 @@ function validate_website() {
 	var guk = "G_ENABLED_IDPS=google; G_AUTHUSER_H=0; G_ENABLED_IDPS=google; ";
 	var id_token = read_cookie().id_token.replace(guk, "");
 
-	console.log(document.cookie);
-	console.log(id_token);
-	console.log(read_cookie().user_id);
-
 	$.ajax({
 		url: "https://oauth2.googleapis.com/tokeninfo",
 		type: "GET",
@@ -26,14 +22,14 @@ function validate_website() {
 		async: false,
 		success: function(data){
 			if (data.aud != "1062776272507-cu3jrfvoh587svb9qrifs7fqkhhsc5rq.apps.googleusercontent.com") {
-				//window.location.href = "/login.html"; // Redirect
+				window.location.href = "/login.html"; // Redirect
 				return;
 			}
 			console.log("Token Valid");
 		},
 
 		error: function(err) {
-			//window.location.href = "/login.html"; // Redirect
+			window.location.href = "/login.html"; // Redirect
 		}
 	});
 }

@@ -7,7 +7,6 @@ function onSignIn(googleUser) {
 		user_id: user_id
 	};
 
-	console.log(cookie);
 	write_cookie(cookie);
 
 	$.ajax({
