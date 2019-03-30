@@ -10,7 +10,7 @@ function send_my_email() {
 		success: function(data){}
 	});
 
-	alert("Message Sent");
+	//alert("Message Sent");
 
 	$("#inputName")[0].value = "";
 	$("#inputEmail")[0].value = "";
