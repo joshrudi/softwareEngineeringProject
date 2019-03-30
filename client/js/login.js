@@ -1,7 +1,7 @@
 function onSignIn(googleUser) {
 	var id_token = googleUser.getAuthResponse().id_token;
 	write_cookie(id_token);
-	window.location.href = "/index.html"; // Redirect
+	//window.location.href = "/index.html"; // Redirect
 }
 
 function signOut() {
