@@ -1,9 +1,9 @@
-//This file holds any configuration variables we may need 
+//This file holds any configuration variables we may need
 //'config.js' is typically ignored by git to protect sensitive information, such as your database's username and password
 
 module.exports = {
   db: {
-    uri: '', //place the URI of your mongo database here.
-  }, 
+    uri: 'mongodb://william:password3@ds113746.mlab.com:13746/student', //place the URI of your mongo database here.
+  },
   port: (process.env.PORT || 8080)
 };

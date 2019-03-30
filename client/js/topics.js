@@ -1,8 +1,8 @@
 var trend_data;
 $.ajax({
 	url: "/get_trending",
-	type: "GET",
-	data: {},
+	type: "POST",
+	data: { woeid: 1, count: 10 },
 	async: false,
 	success: function(data){
 		trend_data = data;

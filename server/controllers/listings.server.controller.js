@@ -1,3 +1,11 @@
+var jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+const { window } = new JSDOM();
+const { document } = (new JSDOM('')).window;
+global.document = document;
+
+var $ = jQuery = require('jquery')(window);
+
 var nodemailer = require('nodemailer');
 var Twit = require('twit')
 
@@ -10,9 +18,11 @@ var T = new Twit({
   strictSSL:            true,     // optional - requires SSL certificates to be valid.
 })
 
-/* Dependencies */
 var mongoose = require('mongoose'),
     Listing = require('../models/listings.server.model.js');
+
+
+
 
 exports.send_email = function(req, res) {
 	name = req.body.name;
@@ -38,16 +48,43 @@ exports.send_email = function(req, res) {
 }
 
 exports.get_trending = function(req, res) {
-	T.get('trends/place', { id: 1 }, function(err, data, response) {
-		res.send(data[0].trends);
+	var num_topics = req.body.count;
+	T.get('trends/place', { id: req.body.woeid }, function(err, data, response) {
+		data = data[0].trends;
+		var best_topics = []
+		for (var i = 0; i < data.length; i++) {
+			if (data[i].tweet_volume != null) {
+				if (best_topics.length < num_topics) { // Initial topics
+					best_topics.push(data[i]);
+				} else {
+					var worst = 0;
+					for (var k = 1; k < num_topics; k++) { // Find the worst topic in best_topics
+						if (best_topics[k].tweet_volume < best_topics[worst].tweet_volume) {
+							worst = k;
+						}
+					}
+
+					if (best_topics[worst].tweet_volume < data[i].tweet_volume) { // Remove the worst and insert data[i]
+						best_topics.splice(worst, 1);
+						best_topics.push(data[i]);
+					}
+				}
+			}
+		}
+		res.send(best_topics);
 	});
 }
 
 exports.get_topic_cards = function(req, res) {
 	var num_topic_cards = 4;
-	T.get('search/tweets', { q: req.body.trend_name, count: 100 }, function(err, data, response) {
+	T.get('search/tweets', { q: req.body.trend_name, count: num_topic_cards }, function(err, data, response) {
+		if (data.statuses == null) {
+			res.status(400);
+			res.send([]);
+			return;
+		}
 		var html_list = [];
-		recurse_get_topic_cards(data.statuses.slice(0, num_topic_cards), html_list, res);
+		recurse_get_topic_cards(data.statuses, html_list, res);
 	});
 }
 
@@ -70,17 +107,27 @@ exports.get_regions = function(req, res) {
 	T.get('trends/available', function(err, data, response) {
 		res.send(data);
 	});
+	var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+	console.log(ip);
 }
 
-
-const {OAuth2Client} = require('google-auth-library');
-const client = new OAuth2Client("1062776272507-cu3jrfvoh587svb9qrifs7fqkhhsc5rq");
-
 exports.validate_token = function(req, res) {
-	const ticket = client.verifyIdToken({
-        idToken: req.body.id_token,
-        audience: "1062776272507-cu3jrfvoh587svb9qrifs7fqkhhsc5rq"
-    });
-    const payload = ticket.getPayload();
-    const userid = payload['sub'];
+	var good = false;
+	$.ajax({
+		url: "https://oauth2.googleapis.com/tokeninfo",
+		type: "GET",
+		async: false,
+		data: { id_token: req.body.id_token },
+
+		success: function(data){
+			if (data.aud == "1062776272507-cu3jrfvoh587svb9qrifs7fqkhhsc5rq.apps.googleusercontent.com") {
+				res.send("OK");
+				good = true;
+			}
+		}
+	});
+
+	if (!good) {
+		res.status(400);
+	}
 }
