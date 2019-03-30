@@ -1,4 +1,6 @@
 function onSignIn(googleUser) {
+	console.log("HI");
+	
 	var id_token = googleUser.getAuthResponse().id_token;
 	var user_id = googleUser.getBasicProfile().getId();
 
