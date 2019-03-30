@@ -107,8 +107,6 @@ exports.get_regions = function(req, res) {
 	T.get('trends/available', function(err, data, response) {
 		res.send(data);
 	});
-	var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-	console.log(ip);
 }
 
 exports.validate_token = function(req, res) {
