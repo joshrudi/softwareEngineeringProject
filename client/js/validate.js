@@ -4,7 +4,6 @@ function write_cookie(id_token) {
 
 function validate_website() {
 	var id_token = document.cookie;
-	console.log(id_token);
 
 	$.ajax({
 		url: "/validate_token",
