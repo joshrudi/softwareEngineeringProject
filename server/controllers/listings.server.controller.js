@@ -1,4 +1,13 @@
 var nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'no.reply.5583to@gmail.com',
+    pass: '8675309FF'
+  }
+});
+
 var Twit = require('twit')
 
 var T = new Twit({
