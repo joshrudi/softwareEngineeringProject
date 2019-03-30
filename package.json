@@ -8,8 +8,6 @@
   "dependencies": {
     "body-parser": "^1.14.1",
     "express": "^4.16.4",
-    "jquery": "^3.3.1",
-    "jsdom": "^14.0.0",
     "mongoose": "^4.13.18",
     "morgan": "^1.9.1",
     "nodemailer": "^6.0.0",

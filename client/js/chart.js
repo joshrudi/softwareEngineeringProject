@@ -9,6 +9,22 @@ var num_topics = 10;
 var custom_chart = null;
 
 function update_chart(woeid, name) {
+
+	// Set the WOEID and name in database
+	var cookie = read_cookie();
+	$.ajax({
+		url: "/update_listing",
+		type: "POST",
+		data: {
+			user_id: cookie.user_id,
+			woeid: woeid,
+			region_name: name
+		},
+		success: function(data) {
+			console.log(data);
+		}
+	});
+
 	$.ajax({
 		url: "/get_trending",
 		type: "POST",
@@ -81,4 +97,11 @@ function update_chart(woeid, name) {
 	});
 }
 
-update_chart(1, 'Worldwide');
+$.ajax({
+	url: "/find_listing",
+	type: "POST",
+	data: { user_id: read_cookie().user_id },
+	success: function(data) {
+		update_chart(data.woeid, data.region_name);
+	}
+});

@@ -1,8 +1,24 @@
 function onSignIn(googleUser) {
 	var id_token = googleUser.getAuthResponse().id_token;
-	write_cookie(id_token);
-	console.log(id_token);
-	//window.location.href = "/index.html"; // Redirect
+	var user_id = googleUser.getBasicProfile().getId();
+
+	var cookie = read_cookie();
+	cookie.id_token = id_token;
+	cookie.user_id = user_id;
+	write_cookie(cookie);
+
+	$.ajax({
+		url: "/update_listing",
+		type: "POST",
+		data: {
+			user_id: cookie.user_id,
+			woeid: null,
+			region_name: null
+		},
+		success: function(data) {
+			console.log(data);
+		}
+	});
 }
 
 function signOut() {

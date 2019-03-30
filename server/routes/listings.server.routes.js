@@ -17,7 +17,10 @@ router.route('/get_topic_cards')
 router.route('/get_regions')
 	.get(listings.get_regions);
 
-router.route('/validate_token')
-	.post(listings.validate_token);
+router.route('/update_listing')
+	.post(listings.update_listing);
 
+router.route('/find_listing')
+	.post(listings.find_listing)
+	
 module.exports = router;

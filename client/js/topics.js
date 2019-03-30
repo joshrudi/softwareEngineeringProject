@@ -1,25 +1,34 @@
-var trend_data;
 $.ajax({
-	url: "/get_trending",
+	url: "/find_listing",
 	type: "POST",
-	data: { woeid: 1, count: 10 },
+	data: { user_id: read_cookie().user_id },
 	async: false,
-	success: function(data){
-		trend_data = data;
+	success: function(data) {
+		var woeid = data.woeid;
+
+		$.ajax({
+			url: "/get_trending",
+			type: "POST",
+			data: { woeid: woeid, count: 4 },
+			async: false,
+			success: function(data){
+				var trend_data = data;
+
+				for (var i = 0; i < trend_data.length; i ++) {
+					$.ajax({
+						url: "/get_topic_cards",
+						type: "POST",
+						data: {
+							trend_name: trend_data[i].name
+						},
+						success: function(data){
+							for (var j = 0; j < data.length; j ++) {
+								$("body").append(data[j]);
+							}
+						}
+					});
+				}
+			}
+		});
 	}
 });
-
-for (var i = 0; i < trend_data.length; i ++) {
-	$.ajax({
-		url: "/get_topic_cards",
-		type: "POST",
-		data: {
-			trend_name: trend_data[i].name
-		},
-		success: function(data){
-			for (var j = 0; j < data.length; j ++) {
-				$("body").append(data[j]);
-			}
-		}
-	});
-}

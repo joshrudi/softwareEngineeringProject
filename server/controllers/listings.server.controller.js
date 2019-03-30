@@ -1,25 +1,17 @@
-var jsdom = require("jsdom");
-const { JSDOM } = jsdom;
-const { window } = new JSDOM();
-const { document } = (new JSDOM('')).window;
-global.document = document;
-
-var $ = jQuery = require('jquery')(window);
-
 var nodemailer = require('nodemailer');
 var Twit = require('twit')
 
 var T = new Twit({
-  consumer_key:         'GVKZERdxjQgdfTufq3zhGkRXm',
-  consumer_secret:      'jImRS1xCQm3MF5qouJRtW3ifphfru8Hi9t1rKzstK9rHlEzIvx',
-  access_token:         '2852289612-UmtNYPl8th35NqOQoH2Enpa45934bCvC084tGoo',
-  access_token_secret:  '6VSUj0E88PTSmR1ma7FahSBIoVzWA26fW2LbClT8bBo76',
-  timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
-  strictSSL:            true,     // optional - requires SSL certificates to be valid.
+	consumer_key:         'GVKZERdxjQgdfTufq3zhGkRXm',
+	consumer_secret:      'jImRS1xCQm3MF5qouJRtW3ifphfru8Hi9t1rKzstK9rHlEzIvx',
+	access_token:         '2852289612-UmtNYPl8th35NqOQoH2Enpa45934bCvC084tGoo',
+	access_token_secret:  '6VSUj0E88PTSmR1ma7FahSBIoVzWA26fW2LbClT8bBo76',
+	timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
+	strictSSL:            true,     // optional - requires SSL certificates to be valid.
 })
 
 var mongoose = require('mongoose'),
-    Listing = require('../models/listings.server.model.js');
+Listing = require('../models/listings.server.model.js');
 
 
 
@@ -76,15 +68,15 @@ exports.get_trending = function(req, res) {
 }
 
 exports.get_topic_cards = function(req, res) {
-	var num_topic_cards = 4;
-	T.get('search/tweets', { q: req.body.trend_name, count: num_topic_cards }, function(err, data, response) {
+	var num_topic_cards = 2;
+	T.get('search/tweets', { q: req.body.trend_name, count: num_topic_cards*2, result_type:"popular" }, function(err, data, response) {
 		if (data.statuses == null) {
 			res.status(400);
 			res.send([]);
 			return;
 		}
 		var html_list = [];
-		recurse_get_topic_cards(data.statuses, html_list, res);
+		recurse_get_topic_cards(data.statuses.slice(0,num_topic_cards), html_list, res);
 	});
 }
 
@@ -109,23 +101,36 @@ exports.get_regions = function(req, res) {
 	});
 }
 
-exports.validate_token = function(req, res) {
-	$.ajax({
-		url: "https://oauth2.googleapis.com/tokeninfo",
-		type: "GET",
-		data: { id_token: req.body.id_token },
+exports.update_listing = function(req, res) {
+	var upsertData = Listing(req.body);
 
-		success: function(data){
-			console.log("GOOD");
-			if (data.aud == "1062776272507-cu3jrfvoh587svb9qrifs7fqkhhsc5rq.apps.googleusercontent.com") {
-				res.send("OK");
-			}
-		},
-
-		error: function(err) {
-			console.log("BAD");
-			res.status(400);
-			res.send("BAD");
+	Listing.findOne({ user_id: upsertData.user_id }, function(err, listing) {
+		if (listing == null) {
+			upsertData.woeid = 0;
+			upsertData.region_name = "Worldwide"; // Defaults
 		}
+
+		upsertData._id = listing._id;
+		Listing.update({ user_id: upsertData.user_id }, upsertData, {upsert: true}, function(err, listing) {
+			if (err) {
+				console.log(err);
+				res.status(404);
+				res.end("Something went wrong");
+				return;
+			}
+			res.send("OK");
+		});
+	});
+}
+
+exports.find_listing = function(req, res) {
+	Listing.findOne({ user_id: req.body.user_id }, function(err, listing) {
+		if (listing == null) {
+			res.writeHead(404);
+			res.end("Could not find listing");
+			return;
+		}
+
+		res.send(listing._doc);
 	});
 }
