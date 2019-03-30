@@ -9,7 +9,7 @@ function onSignIn(googleUser) {
 	console.log("ID Token: " + id_token);
 
 	$.ajax({
-		url: "localhost:8080/validate_token",
+		url: "http://localhost:8080/validate_token",
 		type: "POST",
 		data: { id_token: id_token },
 		success: function(data){
