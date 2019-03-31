@@ -85,7 +85,7 @@ exports.get_topic_cards = function(req, res) {
 			return;
 		}
 		var html_list = [];
-		recurse_get_topic_cards(data.statuses.slice(0,num_topic_cards), html_list, res);
+		recurse_get_topic_cards(data.statuses, html_list, res);
 	});
 }
 
@@ -148,5 +148,36 @@ exports.find_listing = function(req, res) {
 		}
 
 		res.send(listing._doc);
+	});
+}
+
+exports.search_user = function(req, res) {
+	T.get('users/search', { q: req.body.query, count: 100 }, function(err, data, response) {
+		res.send(data);
+	});
+}
+
+
+function format_query(q) {
+	var result = '';
+	if (q.written_in) 					result += "l:" + q.written_in;
+	if (q.all_of_these_words) 			result += " " + q.all_of_these_words;
+	if (q.this_exact_phrase) 			result += " \"" + q.this_exact_phrase + "\"";
+	if (q.any_of_these_words) 			result += " " + q.any_of_these_words.split(/\s/).join(" OR ");
+	if (q.none_of_these_words) 			result += " -" + q.none_of_these_words.split(/\s/).join(" -");
+	if (q.these_hashtags) 				result += " #" + q.these_hashtags.split(/[#\s]/).join(" #");
+	if (q.from_these_accounts) 			result += " from:" + q.from_these_accounts.split(/\s/).join(" from:");
+	if (q.to_these_accounts) 			result += " to:" + q.to_these_accounts.split(/\s/).join(" to:");
+	if (q.mentioning_these_accounts) 	result += " @" + q.mentioning_these_accounts.split(/[@\s]/).join(" @");
+	if (q.since) 						result += " since:" + q.since;
+	if (q.until) 						result += " until:" + q.until;
+	return result;
+}
+
+exports.search_tweets = function(req, res) {
+	var query = format_query(req.body.query);
+	T.get('search/tweets', { q: query, count: 2 }, function(err, data, response) {
+		var html_list = [];
+		recurse_get_topic_cards(data.statuses, html_list, res);
 	});
 }
