@@ -30,18 +30,6 @@
 
               <nav class="mdl-navigation">
 
-                <form action="#">
-                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-                    <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
-                      <i class="material-icons">search</i>
-                    </label>
-                    <div class="mdl-textfield__expandable-holder">
-                      <input class="mdl-textfield__input" type="text" id="search">
-                      <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
-                    </div>
-                  </div>
-                </form>
-
                 <button id="appBarHam" class="mdl-button mdl-js-button mdl-button--icon">
                   <i class="material-icons">more_vert</i>
                 </button>
@@ -73,8 +61,8 @@
                         <span class="mdc-list-item__text">Topics</span>
                     </a>
                     <a class="mdc-list-item" href="trending.html">
-                        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">trending_up</i>
-                        <span class="mdc-list-item__text">Trending</span>
+                        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">search</i>
+                        <span class="mdc-list-item__text">Search</span>
                     </a>
                     <a class="mdc-list-item" href="contactadmin.html">
                         <i class="material-icons mdc-list-item__graphic" aria-hidden="true">contact_mail</i>
@@ -87,18 +75,6 @@
             <main class="mdl-layout__content">
 
                 <div class="page-content">
-
-                    <br>
-
-                    <div align="center">
-
-                        <button data-toggle="modal" data-target="#advancedPopup" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="background-color: #00b8d3;">
-                          Advanced Search
-                        </button>
-                        <br>
-                        <br>
-
-                    </div>
 
                     <br>
 
@@ -167,94 +143,6 @@
 
             </main>
 
-        </div>
-
-        <!-- Popup for advanced search -->
-        <div class="modal fade in" id="advancedPopup" tabindex="-1" role="dialog" aria-labelledby="advancedModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-
-                        <p id="advancedModalLabel" class="modal-title popup">Advanced Search</p>
-
-                        <button class="mdl-button mdl-js-button mdl-button--icon" data-dismiss="modal" aria-hidden="true">
-                          <i class="material-icons">close</i>
-                        </button>
-
-                    </div>
-
-                    <div class="modal-body" ng-repeat="search in history"> <!-- Iterates through saved history -->
-                        <form action="#">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="allWord">
-                                <label class="mdl-textfield__label" for="sample3">Search All Words</label>
-                            </div>
-
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="phrase">
-                                <label class="mdl-textfield__label" for="sample3">Search Exact Phrase</label>
-                            </div>
-
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="excludeWords">
-                                <label class="mdl-textfield__label" for="sample3">Exclude Words</label>
-                            </div>
-
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="hashtags">
-                                <label class="mdl-textfield__label" for="sample3">Include Hashtags</label>
-                            </div>
-
-                            <br>
-                            <br>
-
-                            <div class="form-group">
-                                <select class="form-control" id="sel1">
-                                  <option>All Languages</option>
-                                  <option>English</option>
-                                  <option>French</option>
-                                  <option>Italian</option>
-                                  <option>Russian</option>
-                                </select>
-                            </div>
-
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="hashtags">
-                                <label class="mdl-textfield__label" for="sample3">From these accounts</label>
-                            </div>
-
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="hashtags">
-                                <label class="mdl-textfield__label" for="sample3">To these accounts</label>
-                            </div>
-
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="hashtags">
-                                <label class="mdl-textfield__label" for="sample3">Mentioning these accounts</label>
-                            </div>
-
-                            <br>
-
-                            <div>
-                                <input type="date" name="date">
-                            </div>
-
-                        </form>
-                    </div>
-
-                    <div class="modal-footer">
-
-                        <button data-dismiss="modal" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="background-color: #fc005c;">
-                          Dismiss
-                        </button>   <!-- Dismiss Popup -->
-
-                        <button data-dismiss="modal" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="background-color: #00b8d3;">
-                          Search
-                        </button>   <!-- Apply Search -->
-
-                    </div>
-                </div>
-            </div>
         </div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
