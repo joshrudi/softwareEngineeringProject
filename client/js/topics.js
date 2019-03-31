@@ -20,7 +20,7 @@ $.ajax({
 					<div class='panel'> \
                         <div class='card-body'> \
                             <div class='container'> \
-                                <div style='text-align:center;' id='section_" + i + "'> \
+                                <div class='row' style='text-align:center;' id='section_" + i + "'> \
                                 </div> \
                             </div> \
                         </div> \
@@ -34,7 +34,10 @@ $.ajax({
 						async: false,
 						success: function(data){
 							for (var j = 0; j < data.length; j ++) {
-							    $("#section_" + i).append(data[j]);
+								var tweet_element = "<div class='col-md-6' style='display: inline-block; padding: 10px; position: relative'>";
+								tweet_element += data[j];
+								tweet_element += "</div>";
+								$("#section_" + i).append(tweet_element);
 							}
 						}
 					});
