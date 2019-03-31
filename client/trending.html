@@ -58,8 +58,8 @@
                         <span class="mdc-list-item__text">Topics</span>
                     </a>
                     <a class="mdc-list-item mdc-list-item--activated" href="trending.html">
-                        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">trending_up</i>
-                        <span class="mdc-list-item__text">Trending</span>
+                        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">search</i>
+                        <span class="mdc-list-item__text">Search</span>
                     </a>
                     <a class="mdc-list-item" href="contactadmin.html">
                         <i class="material-icons mdc-list-item__graphic" aria-hidden="true">contact_mail</i>
@@ -73,32 +73,54 @@
 
                 <div class="page-content">
 
-                    <br>
+                    <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+                      <div class="mdl-tabs__tab-bar">
+                          <a href="#userSearch-panel" class="mdl-tabs__tab is-active" style="text-decoration: none;">User Search</a>
+                          <a href="#tweetSearch-panel" class="mdl-tabs__tab" style="text-decoration: none;">Tweet Search</a>
+                      </div>
 
-                    <!--User Information-->
-                    <div class="tableWrapper" align="center" style="padding: 15px; margin: 15px; overflow-x: scroll;">
-                        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-                          <thead>
-                            <tr>
-                              <th class="mdl-data-table__cell--non-numeric">User Name</th>
-                              <th># of friends</th>
-                              <th># of followers</th>
-                              <th># of tweets</th>
-                              <th># of retweets</th>
-                              <th># of favorites</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr ng-repeat="user in users" ng-click="">
-                                <th>{{ user.name }}</th>
-                                <th>{{ user.friends }}</th>
-                                <th>{{ user.followers }}</th>
-                                <th>{{ user.tweets }}</th>
-                                <th>{{ user.retweets }}</th>
-                                <th>{{ user.favorites }}</th>
-                            </tr>
-                          </tbody>
-                        </table>
+                      <div class="mdl-tabs__panel is-active" id="userSearch-panel">
+
+                            <!--User Information-->
+                            <div class="tableWrapper" style="padding: 15px; margin: 15px; overflow-x: scroll;">
+                                <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                                  <thead>
+                                    <tr>
+                                      <th class="mdl-data-table__cell--non-numeric">User Name</th>
+                                      <th># of friends</th>
+                                      <th># of followers</th>
+                                      <th># of tweets</th>
+                                      <th># of retweets</th>
+                                      <th># of favorites</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr ng-repeat="user in users" ng-click="">
+                                        <th>{{ user.name }}</th>
+                                        <th>{{ user.friends }}</th>
+                                        <th>{{ user.followers }}</th>
+                                        <th>{{ user.tweets }}</th>
+                                        <th>{{ user.retweets }}</th>
+                                        <th>{{ user.favorites }}</th>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                            </div>
+                          
+                      </div>
+                      <div class="mdl-tabs__panel" id="tweetSearch-panel">
+                          
+                            <div align="center">
+
+                                <br>
+
+                                <button data-toggle="modal" data-target="#advancedPopup" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="background-color: #00b8d3;">
+                                  Advanced Search
+                                </button>
+
+                            </div>
+
+                      </div>
                     </div>
 
                 </div>
@@ -116,6 +138,94 @@
 
             </main>
 
+        </div>
+
+        <!-- Popup for advanced search -->
+        <div class="modal fade in" id="advancedPopup" tabindex="-1" role="dialog" aria-labelledby="advancedModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <p id="advancedModalLabel" class="modal-title popup">Advanced Search</p>
+
+                        <button class="mdl-button mdl-js-button mdl-button--icon" data-dismiss="modal" aria-hidden="true">
+                          <i class="material-icons">close</i>
+                        </button>
+
+                    </div>
+
+                    <div class="modal-body" ng-repeat="search in history"> <!-- Iterates through saved history -->
+                        <form action="#">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="allWord">
+                                <label class="mdl-textfield__label" for="sample3">Search All Words</label>
+                            </div>
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="phrase">
+                                <label class="mdl-textfield__label" for="sample3">Search Exact Phrase</label>
+                            </div>
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="excludeWords">
+                                <label class="mdl-textfield__label" for="sample3">Exclude Words</label>
+                            </div>
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="hashtags">
+                                <label class="mdl-textfield__label" for="sample3">Include Hashtags</label>
+                            </div>
+
+                            <br>
+                            <br>
+
+                            <div class="form-group">
+                                <select class="form-control" id="sel1">
+                                  <option>All Languages</option>
+                                  <option>English</option>
+                                  <option>French</option>
+                                  <option>Italian</option>
+                                  <option>Russian</option>
+                                </select>
+                            </div>
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="hashtags">
+                                <label class="mdl-textfield__label" for="sample3">From these accounts</label>
+                            </div>
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="hashtags">
+                                <label class="mdl-textfield__label" for="sample3">To these accounts</label>
+                            </div>
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="hashtags">
+                                <label class="mdl-textfield__label" for="sample3">Mentioning these accounts</label>
+                            </div>
+
+                            <br>
+
+                            <div>
+                                <input type="date" name="date">
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+
+                        <button data-dismiss="modal" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="background-color: #fc005c;">
+                          Dismiss
+                        </button>   <!-- Dismiss Popup -->
+
+                        <button data-dismiss="modal" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="background-color: #00b8d3;">
+                          Search
+                        </button>   <!-- Apply Search -->
+
+                    </div>
+                </div>
+            </div>
         </div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
