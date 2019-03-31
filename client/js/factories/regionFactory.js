@@ -10,8 +10,6 @@ angular.module('regions').factory('Regions', function() {
 		}
 	});
 
-	console.log(regions);
-
 	return regions;
 });
 console.log("regionFactory.js running");

@@ -15,11 +15,14 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet"> <!-- Google Font -->
         <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css"> <!-- Material Design Lite -->
         <script src="https://apis.google.com/js/platform.js" async defer></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="js/validate.js"></script>
+		<script src="js/login.js"></script>
     </head>
   <body>
 
     <div class="bg">
-      <div align="center" style="padding-top: 10%;">  
+      <div align="center" style="padding-top: 10%;">
         <div class="mdl-card mdl-shadow--2dp card_width_dynamic">
           <div class="mdl-card__title" style="height: 180px; background: url('styles/welcome_card.jpg') center / cover;">
             <h2 class="mdl-card__title-text" style="color: white;">Welcome</h2>
@@ -30,7 +33,7 @@
           </div>
           <div class="mdl-card__actions mdl-card--border" align="left">
             <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-              <div class="g-signin2" data-onsuccess="onSignIn" style="color: blue;">Get Started</div>
+              <div class="g-signin2" data-onsuccess="onSignIn" onclick="redirect_to_index()" style="color: blue;">Get Started</div>
             </a>
             <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick="signOut();">Sign Out</a>
           </div>
@@ -50,30 +53,6 @@
                 <li class="list-inline-item"><a href="#">Support</a></li>
               </ul>
       </footer>
-
-      <script>
-        function help() {
-
-          alert("Click on 'Get Started' to sign in and continue.  You will be asked to use your Google account to proceed.");
-        }
-
-        function onSignIn(googleUser) {
-          var profile = googleUser.getBasicProfile();
-          console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-          console.log('Name: ' + profile.getName());
-          console.log('Image URL: ' + profile.getImageUrl());
-          console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-          window.open('index.html',"_self");
-        }
-
-        function signOut() {
-          window.open('index.html',"_self"); //temp to sign in until put on the right server
-          var auth2 = gapi.auth2.getAuthInstance();
-          auth2.signOut().then(function () {
-            console.log('User signed out.');
-          });
-        }
-      </script>
 
     </div>
 

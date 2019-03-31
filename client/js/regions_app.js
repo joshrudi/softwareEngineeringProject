@@ -2,5 +2,5 @@
 angular.module('regions', []);
 
 /* register the application and inject all the necessary dependencies */
-var app = angular.module('tweetsApp', ['regions']);
-console.log("app.js running");
+var app = angular.module('RegionsApp', ['regions']);
+console.log("regions_app.js running");
