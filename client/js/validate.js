@@ -23,7 +23,7 @@ function validate_website() {
 		data: { id_token: id_token },
 		async: false,
 		success: function(data){
-			if (data.aud != "1062776272507-cu3jrfvoh587svb9qrifs7fqkhhsc5rq.apps.googleusercontent.com") {
+			if (data.aud != "1068940000938-mj6b6vp8f6h0avtaci071irc1vbbavs9.apps.googleusercontent.com") {
 				window.location.href = "/login.html"; // Redirect
 				return;
 			}
