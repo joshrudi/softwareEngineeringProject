@@ -24,7 +24,7 @@
           <header class="mdl-layout__header">
             <div class="mdl-layout__header-row">
 
-              <span class="mdl-layout-title">Twitter</span>
+              <span class="mdl-layout-title">Search</span>
 
               <div class="mdl-layout-spacer"></div>
 
@@ -80,6 +80,27 @@
                       </div>
 
                       <div class="mdl-tabs__panel is-active" id="userSearch-panel">
+
+                        <br>
+
+                            <div align="center">
+
+                                <main class="mdl-layout__content">
+
+                                    <div class="input-group" id="searchBar">
+
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+
+                                        <input class="mdl-textfield__input" type="text" id="userSearchBar" ng-model="userSearchQuery">
+                                        <label class="mdl-textfield__label" for="userSearchBar">Search</label>
+
+                                    </div>
+
+                                    </div>
+
+                                </main>
+
+                            </div>
 
                             <!--User Information-->
                             <div class="tableWrapper" style="padding: 15px; margin: 15px; overflow-x: scroll;">
