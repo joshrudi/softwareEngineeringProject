@@ -24,14 +24,14 @@ function validate_website() {
 		async: false,
 		success: function(data){
 			if (data.aud != "1062776272507-cu3jrfvoh587svb9qrifs7fqkhhsc5rq.apps.googleusercontent.com") {
-				window.location.href = "/login.html"; // Redirect
+				//window.location.href = "/login.html"; // Redirect
 				return;
 			}
 			console.log("Token Valid");
 		},
 
 		error: function(err) {
-			window.location.href = "/login.html"; // Redirect
+			//window.location.href = "/login.html"; // Redirect
 		}
 	});
 }
