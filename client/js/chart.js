@@ -64,7 +64,7 @@ function update_chart(woeid, name) {
 					options:{
 						title:{
 							display:true,
-							text: 'Most Popular Topics ' + name,
+							text: 'Top Trending Topics ' + name,
 							fontSize:25
 						},
 						legend:{
@@ -89,7 +89,7 @@ function update_chart(woeid, name) {
 				dataset.backgroundColor = topic_colors;
 				dataset.data = topic_volume;
 				custom_chart.data.labels = topic_names;
-				custom_chart.titleBlock.options.text = "Most Popular Topics " + name;
+				custom_chart.options.title.text = "Top Trending Topics " + name;
 				custom_chart.update();
 			}
 

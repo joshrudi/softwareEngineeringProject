@@ -78,7 +78,7 @@ exports.get_trending = function(req, res) {
 
 exports.get_topic_cards = function(req, res) {
 	var num_topic_cards = 2;
-	T.get('search/tweets', { q: req.body.trend_name, count: num_topic_cards*2, result_type:"popular" }, function(err, data, response) {
+	T.get('search/tweets', { q: req.body.trend_name, count: num_topic_cards, result_type:"popular" }, function(err, data, response) {
 		if (data.statuses == null) {
 			res.status(400);
 			res.send([]);
