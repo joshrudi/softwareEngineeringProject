@@ -21,6 +21,12 @@ router.route('/update_listing')
 	.post(listings.update_listing);
 
 router.route('/find_listing')
-	.post(listings.find_listing)
-	
+	.post(listings.find_listing);
+
+router.route('/search_user')
+	.post(listings.search_user);
+
+router.route('/search_tweets')
+	.post(listings.search_tweets);
+
 module.exports = router;
