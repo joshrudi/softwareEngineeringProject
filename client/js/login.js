@@ -19,6 +19,8 @@ function onSignIn(googleUser) {
 			console.log(data);
 		}
 	});
+
+	window.location.href = "/index.html"; // Redirect
 }
 
 function signOut() {
@@ -33,5 +35,4 @@ function signOut() {
 }
 
 function redirect_to_index() {
-	window.location.href = "/index.html"; // Redirect
 }
