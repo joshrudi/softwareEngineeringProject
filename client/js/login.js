@@ -26,4 +26,12 @@ function signOut() {
 	auth2.signOut().then(function () {
 		console.log('User signed out.');
 	});
+	write_cookie({ // Clear cookies
+		id_token: "",
+		user_id: ""
+	});
+}
+
+function redirect_to_index() {
+	window.location.href = "/index.html"; // Redirect
 }
