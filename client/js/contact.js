@@ -9,10 +9,19 @@ function send_my_email() {
 		},
 		success: function(data){}
 	});
-
-	alert("Message Sent");
-
+	
 	$("#inputName")[0].value = "";
 	$("#inputEmail")[0].value = "";
 	$("#inputIssues")[0].value = "";
 }
+
+(function() {
+  'use strict';
+  var snackbarContainer = document.querySelector('#toast-email');
+  var showToastButton = document.querySelector('#show-toast');
+  showToastButton.addEventListener('click', function() {
+    'use strict';
+    var data = {message: 'Feedback Sent!'};
+    snackbarContainer.MaterialSnackbar.showSnackbar(data);
+  });
+}());

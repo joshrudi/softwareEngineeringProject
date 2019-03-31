@@ -15,7 +15,7 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet"> <!-- Google Font -->
         <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css"> <!-- Material Design Lite -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script src="js/validate.js"></script>
+        <script src="js/validate.js"></script>
     </head>
 
     <body>
@@ -113,10 +113,15 @@
 
                         <div align="center">
 
-                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="background-color: #03dac5; color: black;" onclick="send_my_email();">
+                            <button id="show-toast" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="background-color: #03dac5; color: black;" onclick="send_my_email();">
                               <i class="material-icons">send</i>
                               Send
                             </button>
+
+                            <div id="toast-email" class="mdl-js-snackbar mdl-snackbar">
+                              <div class="mdl-snackbar__text"></div>
+                              <button class="mdl-snackbar__action" type="button"></button>
+                            </div>
 
                         </div>
 
