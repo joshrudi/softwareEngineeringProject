@@ -34,5 +34,10 @@ function signOut() {
 	});
 }
 
+function help() {
+
+	alert("Click on 'Sign In' to sign in and continue.  You will be asked to use your Google account to proceed.");
+}
+
 function redirect_to_index() {
 }
