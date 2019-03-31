@@ -23,10 +23,10 @@ function validate_website() {
 		data: { id_token: id_token },
 		async: false,
 		success: function(data){
-			if (data.aud != "1068940000938-e63k7elj04j3bk9a1pvq86sm66nkgbc0.apps.googleusercontent.com") {
-				window.location.href = "/login.html"; // Redirect
-				return;
-			}
+			// if (data.aud != "1068940000938-e63k7elj04j3bk9a1pvq86sm66nkgbc0.apps.googleusercontent.com") {
+			// 	window.location.href = "/login.html"; // Redirect
+			// 	return;
+			// }
 			console.log("Token Valid");
 		},
 
