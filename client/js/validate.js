@@ -31,7 +31,7 @@ function validate_website() {
 		},
 
 		error: function(err) {
-			window.location.href = "/login.html"; // Redirect
+			// window.location.href = "/login.html"; // Redirect
 		}
 	});
 }
