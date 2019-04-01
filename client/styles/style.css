@@ -105,12 +105,6 @@ body, html {
   height: 100%;
 }
 
-footer.bottom {
- position: absolute;
- bottom: 0;
- width: 100%;
-}
-
 .bg { 
   
   background-image: url("mountain.jpg");
