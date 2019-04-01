@@ -137,6 +137,16 @@ body, html {
     height:150% !important;
   }
 
+  .tweet{
+    display: block;
+    position: relative;
+    padding: 0 !important;
+  }
+
 }
 
+.tweet{
+  display: inline-block;
+  position: relative;
+  padding: 10px;
 }
