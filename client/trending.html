@@ -113,6 +113,7 @@
                                   <thead>
                                     <tr>
                                       <th class="mdl-data-table__cell--non-numeric">User Name</th>
+									  <th>Screen Name</th>
                                       <th># of friends</th>
                                       <th># of followers</th>
 									  <th># of tweets</th>
@@ -120,8 +121,9 @@
                                     </tr>
                                   </thead>
                                   <tbody>
-                                    <tr ng-repeat="user in users">
+                                    <tr ng-repeat="user in users" ng-click="user_click(user.url)">
                                         <th>{{ user.name }}</th>
+										<th>{{ user.screen_name }}</th>
                                         <th>{{ user.friends_count }}</th>
                                         <th>{{ user.followers_count }}</th>
 										<th>{{ user.statuses_count }}</th>

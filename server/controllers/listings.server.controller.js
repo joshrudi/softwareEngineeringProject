@@ -153,8 +153,15 @@ exports.find_listing = function(req, res) {
 }
 
 exports.search_user = function(req, res) {
-	T.get('users/search', { q: req.body.query, count: 100 }, function(err, data, response) {
-		res.send(data);
+	T.get('users/search', { q: req.body.query, count: 30 }, function(err, data, response) {
+		var filtered = [];
+		for (var i = 0; i < data.length; i ++) {
+			if (data[i].name.includes(req.body.query) || data[i].screen_name.includes(req.body.query)) {
+				data[i].url = "https://twitter.com/" + data[i].screen_name;
+				filtered.push(data[i]);
+			}
+		}
+		res.send(filtered);
 	});
 }
 
