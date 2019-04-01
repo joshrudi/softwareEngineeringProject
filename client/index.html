@@ -103,8 +103,8 @@
                             </div>
 
                           </main>
-                          <div class="tableWrapper">
-                            <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                          <div>
+                            <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp tableWrapper">
                               <thead>
                                 <tr>
                                   <th class="mdl-data-table__cell--non-numeric">Region Name</th>
@@ -112,7 +112,7 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                <tr ng-repeat="region in regions | filter:{ name: query }" ng-click="WOEID_clicked(region.woeid, region.name)">
+                                <tr class="clickable" ng-repeat="region in regions | filter:{ name: query }" ng-click="WOEID_clicked(region.woeid, region.name, $event)">
                                     <th>{{ region.name }}</th>
                                     <th>{{ region.woeid }}</th>
                                 </tr>
