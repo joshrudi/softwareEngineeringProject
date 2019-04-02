@@ -17,5 +17,9 @@ angular.module('users').controller('UsersController', ['$scope', 'Users',
 				}
 			});
 		}
+
+		$scope.user_click = function(url) {
+			window.open(url, '_blank')
+		}
 	}
 ]);
