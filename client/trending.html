@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css"> <!-- Material Design Lite -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="js/validate.js"></script>
+        <script src="js/login.js"></script>
     </head>
 
     <body>
@@ -36,6 +37,9 @@
                 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="appBarHam">
                     <a href="trending.html">
                         <li class="mdl-menu__item">Refresh</li>
+                    </a>
+                    <a href="" onclick="signOut();">
+                      <li class="mdl-menu__item">Sign Out</li>
                     </a>
                 </ul>
               </nav>
@@ -112,21 +116,21 @@
                                 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
                                   <thead>
                                     <tr>
-                                      <th class="mdl-data-table__cell--non-numeric">User Name</th>
-									  <th>Screen Name</th>
-                                      <th># of friends</th>
-                                      <th># of followers</th>
-									  <th># of tweets</th>
-                                      <th># of favorites</th>
+                                      <th class="mdl-data-table__cell--non-numeric" style="font-size: 15px;">User Name</th>
+                                      <th style="font-size: 15px;">Screen Name</th>
+                                      <th style="font-size: 15px;"># of friends</th>
+                                      <th style="font-size: 15px;"># of followers</th>
+									                    <th style="font-size: 15px;"># of tweets</th>
+                                      <th style="font-size: 15px;"># of favorites</th>
                                     </tr>
                                   </thead>
                                   <tbody>
                                     <tr ng-repeat="user in users" ng-click="user_click(user.url)">
                                         <th>{{ user.name }}</th>
-										<th>{{ user.screen_name }}</th>
+										                    <th>{{ user.screen_name }}</th>
                                         <th>{{ user.friends_count }}</th>
                                         <th>{{ user.followers_count }}</th>
-										<th>{{ user.statuses_count }}</th>
+										                    <th>{{ user.statuses_count }}</th>
                                         <th>{{ user.favourites_count }}</th>
                                     </tr>
                                   </tbody>
@@ -141,8 +145,10 @@
                                 <br>
 
                                 <button data-toggle="modal" data-target="#advancedPopup" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="background-color: #03dac5; color: black;">
-                                  Advanced Search
+                                  Update Filters
                                 </button>
+
+                                <small id="emailHelp" class="form-text text-muted">(Go here to start the search too)</small>
 
 								<div id="tweet_container">
 		    					</div>
@@ -153,7 +159,7 @@
 
 
 
-                <footer class="mdl-mini-footer" style="margin-top: 100px;">
+                <footer class="mdl-mini-footer" style="margin-top: 500px;">
                   <div class="mdl-mini-footer__left-section">
                     <div class="mdl-logo">Copyright Twitter, © 2019</div>
                     <ul class="mdl-mini-footer__link-list">
@@ -174,7 +180,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
 
-                        <p id="advancedModalLabel" class="modal-title popup">Advanced Search</p>
+                        <p id="advancedModalLabel" class="modal-title popup">Update Filters</p>
 
                         <button class="mdl-button mdl-js-button mdl-button--icon" data-dismiss="modal" aria-hidden="true">
                           <i class="material-icons">close</i>
@@ -195,6 +201,13 @@
                             </div>
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="phrase">
+                                <label class="mdl-textfield__label" for="sample3">Search for Multiple Words</label>
+                            </div>
+
+                            <small id="emailHelp" class="form-text text-muted">(Space Separated)</small>
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <input class="mdl-textfield__input" type="text" id="excludeWords">
                                 <label class="mdl-textfield__label" for="sample3">Exclude Words</label>
                             </div>
@@ -209,11 +222,69 @@
 
                             <div class="form-group">
                                 <select class="form-control" id="sel1">
-                                  <option>All Languages</option>
-                                  <option>English</option>
-                                  <option>French</option>
-                                  <option>Italian</option>
-                                  <option>Russian</option>
+                                    <option value="all" selected="selected">All languages</option>
+                                    <option disabled="disabled">---</option>
+                                      <option value="en">English (English)</option>
+                                      <option value="ja">Japanese (日本語)</option>
+                                      <option value="fr">French (français)</option>
+                                      <option value="es">Spanish (español)</option>
+                                    <option disabled="disabled">---</option>
+                                      <option value="am">Amharic (አማርኛ)</option>
+                                      <option value="ar">Arabic (العربية)</option>
+                                      <option value="hy">Armenian (հայերեն)</option>
+                                      <option value="bn">Bangla (বাংলা)</option>
+                                      <option value="bg">Bulgarian (български)</option>
+                                      <option value="my">Burmese (မြန်မာ)</option>
+                                      <option value="ckb">Central Kurdish (کوردیی ناوەندی)</option>
+                                      <option value="zh">Chinese (中文)</option>
+                                      <option value="da">Danish (dansk)</option>
+                                      <option value="dv">Divehi (Divehi)</option>
+                                      <option value="nl">Dutch (Nederlands)</option>
+                                      <option value="et">Estonian (eesti)</option>
+                                      <option value="fi">Finnish (suomi)</option>
+                                      <option value="ka">Georgian (ქართული)</option>
+                                      <option value="de">German (Deutsch)</option>
+                                      <option value="el">Greek (Ελληνικά)</option>
+                                      <option value="gu">Gujarati (ગુજરાતી)</option>
+                                      <option value="ht">Haitian Creole (Haitian Creole)</option>
+                                      <option value="he">Hebrew (עברית)</option>
+                                      <option value="hi">Hindi (हिन्दी)</option>
+                                      <option value="hu">Hungarian (magyar)</option>
+                                      <option value="is">Icelandic (íslenska)</option>
+                                      <option value="id">Indonesian (Indonesia)</option>
+                                      <option value="it">Italian (italiano)</option>
+                                      <option value="kn">Kannada (ಕನ್ನಡ)</option>
+                                      <option value="km">Khmer (ខ្មែរ)</option>
+                                      <option value="ko">Korean (한국어)</option>
+                                      <option value="lo">Lao (ລາວ)</option>
+                                      <option value="lv">Latvian (latviešu)</option>
+                                      <option value="lt">Lithuanian (lietuvių)</option>
+                                      <option value="ml">Malayalam (മലയാളം)</option>
+                                      <option value="mr">Marathi (मराठी)</option>
+                                      <option value="ne">Nepali (नेपाली)</option>
+                                      <option value="no">Norwegian (norsk)</option>
+                                      <option value="or">Odia (ଓଡ଼ିଆ)</option>
+                                      <option value="ps">Pashto (پښتو)</option>
+                                      <option value="fa">Persian (فارسی)</option>
+                                      <option value="pl">Polish (polski)</option>
+                                      <option value="pt">Portuguese (português)</option>
+                                      <option value="pa">Punjabi (ਪੰਜਾਬੀ)</option>
+                                      <option value="ro">Romanian (română)</option>
+                                      <option value="ru">Russian (русский)</option>
+                                      <option value="sr">Serbian (српски)</option>
+                                      <option value="sd">Sindhi (سنڌي)</option>
+                                      <option value="si">Sinhala (සිංහල)</option>
+                                      <option value="sl">Slovenian (slovenščina)</option>
+                                      <option value="sv">Swedish (svenska)</option>
+                                      <option value="tl">Tagalog (Tagalog)</option>
+                                      <option value="ta">Tamil (தமிழ்)</option>
+                                      <option value="te">Telugu (తెలుగు)</option>
+                                      <option value="th">Thai (ไทย)</option>
+                                      <option value="bo">Tibetan (བོད་སྐད་)</option>
+                                      <option value="tr">Turkish (Türkçe)</option>
+                                      <option value="ur">Urdu (اردو)</option>
+                                      <option value="ug">Uyghur (ئۇيغۇرچە)</option>
+                                      <option value="vi">Vietnamese (Tiếng Việt)</option>
                                 </select>
                             </div>
 
@@ -235,7 +306,13 @@
                             <br>
 
                             <div>
+                                <p>Date Range:</p>
+                                <a>From</a>
                                 <input type="date" name="date">
+                                <a>to</a>
+                                <input type="date" name="dateEnd">
+                                <br>
+                                <br>
                             </div>
 
                         </form>
@@ -246,7 +323,7 @@
 	                          Dismiss
 	                        </button>   <!-- Dismiss Popup -->
 
-	                        <button data-dismiss="modal" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="background-color: #00b8d3;" onclick="search_tweets()">
+	                        <button data-dismiss="modal" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="background-color: #03dac5;" onclick="search_tweets()">
 	                          Search
 	                        </button>   <!-- Apply Search -->
 
