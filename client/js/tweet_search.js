@@ -2,7 +2,7 @@ function search_tweets() {
 	var query = {
 		all_of_these_words: $('#allWord').val(),
 		this_exact_phrase: $('#phrase').val(),
-		any_of_these_words: $("#any_of_these_words").val(),
+		any_of_these_words: null,
 		none_of_these_words: $("#excludeWords").val(),
 		these_hashtags: $("#hashtags").val(),
 		written_in: null,
@@ -21,7 +21,9 @@ function search_tweets() {
 		},
 		success: function(data){
 			$("#tweet_container").empty();
-			$("#tweet_container").append(data[0]);
+			for (var i = 0; i < data.length; i ++) {
+				$("#tweet_container").append(data[i]);
+			}
 		}
 	});
 }
