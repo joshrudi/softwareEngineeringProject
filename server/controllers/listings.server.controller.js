@@ -171,7 +171,7 @@ exports.search_user = function(req, res) {
 
 function format_query(q) {
 	var result = '';
-	if (q.written_in) 					result += "l:" + q.written_in;
+	if (q.written_in) 					result += "lang:" + q.written_in;
 	if (q.all_of_these_words) 			result += " " + q.all_of_these_words;
 	if (q.this_exact_phrase) 			result += " \"" + q.this_exact_phrase + "\"";
 	if (q.any_of_these_words) 			result += " " + q.any_of_these_words.split(/\s/).join(" OR ");
