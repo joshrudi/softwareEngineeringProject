@@ -155,3 +155,18 @@ a {
   position: relative;
   padding: 10px;
 }
+
+.tableWrapper{
+  overflow-y: auto;
+  display: inline-block;
+  max-height: 500px;
+  height: auto;
+}
+
+.clickable:hover{
+  cursor: pointer;
+}
+
+.clicked{
+  background-color: lightblue;
+}
