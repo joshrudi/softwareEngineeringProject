@@ -189,6 +189,6 @@ exports.search_tweets = function(req, res) {
 	var query = format_query(req.body.query);
 	T.get('search/tweets', { q: query, count: 2 }, function(err, data, response) {
 		var html_list = [];
-		recurse_get_topic_cards(data.statuses, html_list, res);
+		recurse_get_topic_cards(data.statuses, html_list, res, 0);
 	});
 }

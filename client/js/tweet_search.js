@@ -21,9 +21,7 @@ function search_tweets() {
 		},
 		success: function(data){
 			$("#tweet_container").empty();
-			for (var i = 0; i < data.length; i ++) {
-				$("#tweet_container").append(data[i]);
-			}
+			$("#tweet_container").append(data.html_list[0]);
 		}
 	});
 }
