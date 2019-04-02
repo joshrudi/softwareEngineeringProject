@@ -24,6 +24,10 @@ function onSignIn(googleUser) {
 }
 
 function signOut() {
+	gapi.load('auth2', function() {
+		gapi.auth2.init();
+	});
+
 	var auth2 = gapi.auth2.getAuthInstance();
 	auth2.signOut().then(function () {
 		console.log('User signed out.');
@@ -38,7 +42,4 @@ function signOut() {
 function help() {
 
 	alert("Click on 'Sign In' to sign in and continue.  You will be asked to use your Google account to proceed.");
-}
-
-function redirect_to_index() {
 }
