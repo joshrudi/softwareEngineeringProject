@@ -2,7 +2,6 @@ $.ajax({
 	url: "/find_listing",
 	type: "POST",
 	data: { user_id: read_cookie().user_id },
-	async: false,
 	success: function(data) {
 		var woeid = data.woeid;
 
@@ -10,7 +9,6 @@ $.ajax({
 			url: "/get_trending",
 			type: "POST",
 			data: { woeid: woeid, count: 5 },
-			async: false,
 			success: function(data){
 				var trend_data = data;
 
@@ -29,15 +27,19 @@ $.ajax({
 						url: "/get_topic_cards",
 						type: "POST",
 						data: {
-							trend_name: trend_data[i].name
+							trend_name: trend_data[i].name,
+							section: i
 						},
-						async: false,
 						success: function(data){
-							for (var j = 0; j < data.length; j ++) {
+							for (var j = 0; j < data.html_list.length; j ++) {
 								var tweet_element = "<div class='col-md-6 tweet'>";
-								tweet_element += data[j];
+								tweet_element += data.html_list[j];
 								tweet_element += "</div>";
-								$("#section_" + i).append(tweet_element);
+								$("#section_" + data.section).append(tweet_element);
+							}
+
+							if (data.section == 4) {
+								update_accordions();
 							}
 						}
 					});

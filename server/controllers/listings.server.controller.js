@@ -86,13 +86,16 @@ exports.get_topic_cards = function(req, res) {
 			return;
 		}
 		var html_list = [];
-		recurse_get_topic_cards(data.statuses, html_list, res);
+		recurse_get_topic_cards(data.statuses, html_list, res, req.body.section);
 	});
 }
 
-function recurse_get_topic_cards(statuses, html_list, res) {
+function recurse_get_topic_cards(statuses, html_list, res, section) {
 	if (statuses.length == 0) {
-		res.send(html_list);
+		res.send({
+			html_list: html_list,
+			section: section,
+		});
 		return;
 	}
 
@@ -101,7 +104,7 @@ function recurse_get_topic_cards(statuses, html_list, res) {
 
 	T.get('statuses/oembed', { id: status.id_str }, function(err, html, response) {
 		html_list.push(html.html);
-		recurse_get_topic_cards(statuses, html_list, res);
+		recurse_get_topic_cards(statuses, html_list, res, section);
 	});
 }
 
