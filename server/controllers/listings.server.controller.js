@@ -182,6 +182,7 @@ function format_query(q) {
 	if (q.mentioning_these_accounts) 	result += " @" + q.mentioning_these_accounts.split(/[@\s]/).join(" @");
 	if (q.since) 						result += " since:" + q.since;
 	if (q.until) 						result += " until:" + q.until;
+	console.log(result);
 	return result;
 }
 
