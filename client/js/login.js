@@ -24,9 +24,14 @@ function onSignIn(googleUser) {
 }
 
 function onLoad() {
-	gapi.load('auth2', function() {
-		gapi.auth2.init();
-	});
+    gapi.load('auth2', () => {
+        gapi.auth2.init({ client_id: "1068940000938-e63k7elj04j3bk9a1pvq86sm66nkgbc0.apps.googleusercontent.com" }).then(() => {
+
+            // DO NOT ATTEMPT TO RENDER BUTTON UNTIL THE 'Init' PROMISE RETURNS
+            renderButton();
+
+        });
+    });
 }
 
 function signOut() {
