@@ -116,7 +116,7 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                <tr class="clickable" ng-repeat="region in regions | filter:{ name: query }" ng-click="WOEID_clicked(region.woeid, region.name, $event)">
+                                <tr class="clickable" ng-repeat="region in regions | filter:{ name: query } | orderBy:'name'" ng-click="WOEID_clicked(region.woeid, region.name, $event)">
                                     <th>{{ region.name }}</th>
                                     <th>{{ region.woeid }}</th>
                                 </tr>
