@@ -1,8 +1,8 @@
-let myChart = document.getElementById('myChart').getContext('2d');
+let myChart2 = document.getElementById('myChart2').getContext('2d');
 
 //Global Options
 Chart.defaults.global.defaultFontFamily = 'Lato';
-Chart.defaults.global.defaultFontSize = 18;
+Chart.defaults.global.defaultFontSize = 15;
 Chart.defaults.global.defaultFontColor = '#777';
 
 var num_topics = 10;
@@ -46,8 +46,8 @@ function update_chart(woeid, name) {
 			}
 
 			if (custom_chart == null) {
-				custom_chart = new Chart(myChart, {
-					type: 'bar', //bar, horizantal, pie, line, doughnout, radar, polarArea
+				custom_chart = new Chart(myChart2, {
+					type: 'radar', //bar, horizantal, pie, line, doughnout, radar, polarArea
 					data:{
 						labels:topic_names,
 						datasets:[{
@@ -65,7 +65,7 @@ function update_chart(woeid, name) {
 						title:{
 							display:true,
 							text: 'Top Trending Topics ' + name,
-							fontSize:25
+							fontSize:18
 						},
 						legend:{
 							display:false,

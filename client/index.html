@@ -19,9 +19,10 @@
         <script src="js/login.js"></script>
 
     </head>
-
+   
     <body ng-app="RegionsApp">
-
+        
+        
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
           <header class="mdl-layout__header">
             <div class="mdl-layout__header-row">
@@ -84,10 +85,12 @@
                     <br>
 
                     <div class="container">
-                      <canvas id="myChart" style="width: 100%;"></canvas>
+                        <div class="chart-container" style="position: relative;">   
+                              <canvas id="myChart"></canvas>
+                        </div>
                     </div>
 
-                    <div style="padding: 15px;" align="center">
+                    <div style="padding: 20px;" align="center">
 
                       <h3>Select Region</h3>
 
@@ -147,7 +150,7 @@
                 </ul>
               </div>
             </footer>
-
+          
             </main>
 
         </div>
@@ -173,7 +176,7 @@
           }
 
         </script>
-
     </body>
+ 
 
 </html>
