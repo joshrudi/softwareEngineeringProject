@@ -23,6 +23,17 @@ function onSignIn(googleUser) {
 	window.location.href = "/index.html"; // Redirect
 }
 
+function onLoad() {
+    gapi.load('auth2', () => {
+        gapi.auth2.init({ client_id: "1068940000938-e63k7elj04j3bk9a1pvq86sm66nkgbc0.apps.googleusercontent.com" }).then(() => {
+
+            // DO NOT ATTEMPT TO RENDER BUTTON UNTIL THE 'Init' PROMISE RETURNS
+            renderButton();
+
+        });
+    });
+}
+
 function signOut() {
 	var auth2 = gapi.auth2.getAuthInstance();
 	auth2.signOut().then(function () {
@@ -38,7 +49,4 @@ function signOut() {
 function help() {
 
 	alert("Click on 'Sign In' to sign in and continue.  You will be asked to use your Google account to proceed.");
-}
-
-function redirect_to_index() {
 }

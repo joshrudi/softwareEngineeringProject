@@ -86,13 +86,16 @@ exports.get_topic_cards = function(req, res) {
 			return;
 		}
 		var html_list = [];
-		recurse_get_topic_cards(data.statuses, html_list, res);
+		recurse_get_topic_cards(data.statuses, html_list, res, req.body.section);
 	});
 }
 
-function recurse_get_topic_cards(statuses, html_list, res) {
+function recurse_get_topic_cards(statuses, html_list, res, section) {
 	if (statuses.length == 0) {
-		res.send(html_list);
+		res.send({
+			html_list: html_list,
+			section: section,
+		});
 		return;
 	}
 
@@ -101,7 +104,7 @@ function recurse_get_topic_cards(statuses, html_list, res) {
 
 	T.get('statuses/oembed', { id: status.id_str }, function(err, html, response) {
 		html_list.push(html.html);
-		recurse_get_topic_cards(statuses, html_list, res);
+		recurse_get_topic_cards(statuses, html_list, res, section);
 	});
 }
 
@@ -168,7 +171,7 @@ exports.search_user = function(req, res) {
 
 function format_query(q) {
 	var result = '';
-	if (q.written_in) 					result += "l:" + q.written_in;
+	if (q.written_in) 					result += "lang:" + q.written_in;
 	if (q.all_of_these_words) 			result += " " + q.all_of_these_words;
 	if (q.this_exact_phrase) 			result += " \"" + q.this_exact_phrase + "\"";
 	if (q.any_of_these_words) 			result += " " + q.any_of_these_words.split(/\s/).join(" OR ");
@@ -179,6 +182,7 @@ function format_query(q) {
 	if (q.mentioning_these_accounts) 	result += " @" + q.mentioning_these_accounts.split(/[@\s]/).join(" @");
 	if (q.since) 						result += " since:" + q.since;
 	if (q.until) 						result += " until:" + q.until;
+	console.log(result);
 	return result;
 }
 
@@ -186,6 +190,6 @@ exports.search_tweets = function(req, res) {
 	var query = format_query(req.body.query);
 	T.get('search/tweets', { q: query, count: 2 }, function(err, data, response) {
 		var html_list = [];
-		recurse_get_topic_cards(data.statuses, html_list, res);
+		recurse_get_topic_cards(data.statuses, html_list, res, 0);
 	});
 }
