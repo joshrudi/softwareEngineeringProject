@@ -6,7 +6,8 @@ Chart.defaults.global.defaultFontSize = 15;
 //Chart.defaults.global.defaultFontColor = '#777';
 Chart.defaults.global.hover.mode = 'nearest';
 
-var num_topics = 7;
+
+var num_topics = 8;
 var custom_chart = null;
 
 function update_chart(woeid, name) {
@@ -63,6 +64,8 @@ function update_chart(woeid, name) {
 						}]
 					},
 					options:{
+						responsive: true,
+						animation:false,
 						title:{
 							display:true,
 							text: 'Top Trending Topics ' + name,
