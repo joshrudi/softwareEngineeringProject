@@ -149,17 +149,14 @@ a {
     position: relative;
     padding: 0 !important;
   }
-  /* #forSmallScreen{
+ 
+  #smallTable{
     display: block;
     position: relative;
-    padding: 10em !important;
-  } */
+    bottom: 500 !important;
+    top: 0 !important;
+  }
   
-  /* #searchBar{
-    display: block;
-    position: relative;
-    padding: 10em !important;
-  } */
 }
 
 .tweet{
