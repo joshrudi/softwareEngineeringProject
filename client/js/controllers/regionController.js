@@ -34,7 +34,16 @@ angular.module('regions').controller('RegionsController', ['$scope', 'Regions',
 	    var email = 'mailto:' + '?subject=' + 'Twitter Analytics Trending Data for ' + date + '&body=' + data;
 
 	    // encode for URL
-	    window.open(email,"_self");
+		$.ajax({ // Dry run test email send
+			url: email,
+			type: "GET",
+			success: function(data) {
+				window.open(email, "_self");
+			},
+			error: function() {
+				alert("HI");
+			}
+		});
 	}
   }
 ]);

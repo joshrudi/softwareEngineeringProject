@@ -92,7 +92,6 @@ function update_chart(woeid, name) {
 				custom_chart.options.title.text = "Top Trending Topics " + name;
 				custom_chart.update();
 			}
-
 		}
 	});
 }
@@ -103,5 +102,8 @@ $.ajax({
 	data: { user_id: read_cookie().user_id },
 	success: function(data) {
 		update_chart(data.woeid, data.region_name);
+	},
+	error: function() {
+		update_chart(1, "Worldwide");
 	}
 });

@@ -26,27 +26,58 @@ Listing = require('../models/listings.server.model.js');
 
 
 exports.send_email = function(req, res) {
-	name = req.body.name;
-	email = req.body.email;
-	issues = req.body.issues;
-
-	var mailOptions = {
-		from: 'no.reply.5583to@gmail.com',
-		to: 'jrudaitis@outlook.com',
-		cc: ["williamjr@ufl.edu", "psanchez1@ufl.edu", "uzunoglualihan@ufl.edu"],
-		subject: 'Issue Report',
-		text: "RESPOND TO: " + email + '\n' + issues
-	};
-
-	transporter.sendMail(mailOptions, function(error, info){
-		if (error) {
-			console.log(error);
+	Listing.findOne({ user_id: req.body.user_id }, function(err, listing) {
+		if (listing == null) {
+			res.status(400);
+			res.end("Could not find user id");
 		} else {
-			console.log('Email sent: ' + info.response);
+			name = req.body.name;
+			email = req.body.email;
+			issues = req.body.issues;
+
+			var mailOptions = {
+				from: 'no.reply.5583to@gmail.com',
+				to: 'jrudaitis@outlook.com',
+				cc: ["williamjr@ufl.edu", "psanchez1@ufl.edu", "uzunoglualihan@ufl.edu"],
+				subject: 'Issue Report',
+				text: "RESPOND TO: " + email + '\n' + issues
+			};
+
+
+
+			var current_millis = (new Date).getTime();
+			if (current_millis - listing.emails_sent[0].millis < 600000) { // 10 emails in 10 minutes
+				res.status(400);
+				res.end("Too many emails sent");
+			} else {
+				listing.emails_sent.shift(); // Remove first element
+				listing.emails_sent.push({
+					millis: current_millis
+				});
+				var upsertData = listing;
+
+				Listing.update({ user_id: upsertData.user_id }, upsertData, {upsert: true}, function(err, listing) {
+					if (err) {
+						console.log(err);
+						res.status(400);
+						res.end("Something went wrong");
+						return;
+					} else {
+						transporter.sendMail(mailOptions, function(error, info){
+							if (error) {
+								console.log(error);
+								res.status(400);
+								res.end("Could not send email");
+							} else {
+								console.log('Email sent: ' + info.response);
+								res.send("OK");
+							}
+						});
+					}
+				});
+			}
 		}
 	});
-
-	res.send("OK");
 }
 
 exports.get_trending = function(req, res) {
@@ -121,6 +152,19 @@ exports.update_listing = function(req, res) {
 		if (listing == null) {
 			upsertData.woeid = 1;
 			upsertData.region_name = "Worldwide"; // Defaults
+			upsertData.emails_sent = [
+				{millis: 0},
+				{millis: 0},
+				{millis: 0},
+				{millis: 0},
+				{millis: 0},
+				{millis: 0},
+				{millis: 0},
+				{millis: 0},
+				{millis: 0},
+				{millis: 0}
+			]; // Never sent an email
+
 		} else {
 			upsertData._id = listing._id;
 		}
@@ -188,8 +232,8 @@ function format_query(q) {
 
 exports.search_tweets = function(req, res) {
 	var query = format_query(req.body.query);
-	T.get('search/tweets', { q: query, count: 2 }, function(err, data, response) {
-		var html_list = [];
-		recurse_get_topic_cards(data.statuses, html_list, res, 0);
+	T.get('search/tweets', { q: query, count: req.body.count+1 }, function(err, data, response) {
+		data.statuses.pop(); // The last element is garbage for some reason
+		res.send(data.statuses);
 	});
 }

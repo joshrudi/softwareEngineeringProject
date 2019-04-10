@@ -17,11 +17,11 @@ function search_tweets() {
 		url: "/search_tweets",
 		type: "POST",
 		data: {
-			query: query
+			query: query,
+			count: 10
 		},
 		success: function(data){
-			$("#tweet_container").empty();
-			$("#tweet_container").append(data.html_list[0]);
+			console.log(data);
 		}
 	});
 }

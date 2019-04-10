@@ -16,7 +16,15 @@ var listingSchema = new Schema({
 	region_name: {
 		type: String,
 		required: true,
-	}
+	},
+	emails_sent: [
+		{
+			millis: {
+				type: Number,
+				required: true
+			}
+		}
+	]
 });
 
 /* create a 'pre' function for no reason */

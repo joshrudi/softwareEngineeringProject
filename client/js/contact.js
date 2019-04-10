@@ -1,37 +1,33 @@
-var isSent = false;
+var snackbarContainer = document.querySelector('#toast-email');
+var showToastButton = document.querySelector('#show-toast');
+var success_data = {message: 'Feedback Sent!'};
+var error_data = {message: 'Uh oh! Error!'};
 
 function send_my_email() {
-
 	if ($("#inputName")[0].value === '' || $("#inputEmail")[0].value === '' || $("#inputIssues")[0].value === '') isSent = false;
 	else {
 
-		isSent = true;
+		var cookie = read_cookie();
 
-			$.ajax({
+		$.ajax({
 			url: "/send_email",
 			type: "POST",
 			data: {
 				name: $("#inputName")[0].value,
 				email: $("#inputEmail")[0].value,
-				issues: $("#inputIssues")[0].value
+				issues: $("#inputIssues")[0].value,
+				user_id: cookie.user_id,
 			},
-			success: function(data){}
+			success: function(data){
+				snackbarContainer.MaterialSnackbar.showSnackbar(success_data);
+
+				$("#inputName")[0].value = "";
+				$("#inputEmail")[0].value = "";
+				$("#inputIssues")[0].value = "";
+			},
+			error: function() {
+				snackbarContainer.MaterialSnackbar.showSnackbar(error_data);
+			}
 		});
 	}
-
-	$("#inputName")[0].value = "";
-	$("#inputEmail")[0].value = "";
-	$("#inputIssues")[0].value = "";
 }
-
-(function() {
-  'use strict';
-  var snackbarContainer = document.querySelector('#toast-email');
-  var showToastButton = document.querySelector('#show-toast');
-  showToastButton.addEventListener('click', function() {
-    'use strict';
-    if (isSent) var data = {message: 'Feedback Sent!'};
-    else var data = {message: 'Uh oh! Error!'};
-    snackbarContainer.MaterialSnackbar.showSnackbar(data);
-  });
-}());
