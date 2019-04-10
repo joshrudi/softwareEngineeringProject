@@ -132,7 +132,7 @@ a {
 }
 
 /* Mobile and "Thin Window" Styling */
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 740px) {
   .card_width_dynamic {
 
     width: 300px !important;
@@ -149,7 +149,17 @@ a {
     position: relative;
     padding: 0 !important;
   }
-
+  /* #forSmallScreen{
+    display: block;
+    position: relative;
+    padding: 10em !important;
+  } */
+  
+  /* #searchBar{
+    display: block;
+    position: relative;
+    padding: 10em !important;
+  } */
 }
 
 .tweet{
@@ -185,9 +195,9 @@ a {
   position: absolute;
   left:100px;
 }
-.container{
+.indexContainer{
   position:absolute;
-  right:200px;
+  right:100px;
 }
 h3{
   border: none;
