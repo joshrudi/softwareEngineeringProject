@@ -80,55 +80,49 @@
             </div>
             <main class="mdl-layout__content">
 
-                <div class="page-content">
+              <div class="page-content">
+                    <div ng-controller="RegionsController">
+                      
+                          <h3>Select Region</h3>
+                          
+                          <div style="padding: 50px;"></div>
+                        <main class="mdl-layout__content">
 
-                    <br>
+                          <div class="input-group" id="searchBar">
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+
+                              <input class="mdl-textfield__input" type="text" id="regionSearch" ng-model="query">
+                              <label class="mdl-textfield__label" for="regionSearch">Search</label>
+
+                            </div>
+
+                          </div>
+
+                        </main>
+                        <div class="mainTable">
+                          <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp tableWrapper">
+                            <thead>
+                              <tr>
+                                <th class="mdl-data-table__cell--non-numeric" style="font-size: 15px;">Region Name</th>
+                                <th style="font-size: 15px;">ID</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr class="clickable" ng-repeat="region in regions | filter:{ name: query } | orderBy:'name'" ng-click="WOEID_clicked(region.woeid, region.name, $event)">
+                                  <th>{{ region.name }}</th>
+                                  <th>{{ region.woeid }}</th>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      
+                    </div>
 
                     <div class="container">
                         <div class="chart-container" style="position: relative;">   
                               <canvas id="myChart"></canvas>
                         </div>
-                    </div>
-
-                    <div style="padding: 20px;" align="center">
-
-                      <h3>Select Region</h3>
-
-                      <div ng-controller="RegionsController">
-                        <div align="center">
-                          <main class="mdl-layout__content">
-
-                            <div class="input-group" id="searchBar">
-
-                              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-
-                                <input class="mdl-textfield__input" type="text" id="regionSearch" ng-model="query">
-                                <label class="mdl-textfield__label" for="regionSearch">Search</label>
-
-                              </div>
-
-                            </div>
-
-                          </main>
-                          <div>
-                            <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp tableWrapper">
-                              <thead>
-                                <tr>
-                                  <th class="mdl-data-table__cell--non-numeric" style="font-size: 15px;">Region Name</th>
-                                  <th style="font-size: 15px;">ID</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr class="clickable" ng-repeat="region in regions | filter:{ name: query } | orderBy:'name'" ng-click="WOEID_clicked(region.woeid, region.name, $event)">
-                                    <th>{{ region.name }}</th>
-                                    <th>{{ region.woeid }}</th>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      </div>
-
                     </div>
 
                 </div>
@@ -140,7 +134,7 @@
               </button>
             </div>
 
-            <footer class="mdl-mini-footer" style="margin-top: 500px;">
+            <footer class="mdl-mini-footer" style="margin-top: 650px;">
               <div class="mdl-mini-footer__left-section">
                 <div class="mdl-logo">Copyright Twitter, © 2019</div>
                 <ul class="mdl-mini-footer__link-list">
