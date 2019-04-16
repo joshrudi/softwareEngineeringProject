@@ -20,334 +20,335 @@
     </head>
 
     <body>
+		<main ng-app="UsersApp">
+			<div ng-controller="UsersController">
+		        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+		          <header class="mdl-layout__header">
+		            <div class="mdl-layout__header-row">
 
-        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-          <header class="mdl-layout__header">
-            <div class="mdl-layout__header-row">
+		              <span class="mdl-layout-title">Search</span>
 
-              <span class="mdl-layout-title">Search</span>
+		              <div class="mdl-layout-spacer"></div>
 
-              <div class="mdl-layout-spacer"></div>
+		              <nav class="mdl-navigation">
 
-              <nav class="mdl-navigation">
+		                <button id="appBarHam" class="mdl-button mdl-js-button mdl-button--icon">
+		                  <i class="material-icons">more_vert</i>
+		                </button>
+		                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="appBarHam">
+		                    <a href="trending.html">
+		                        <li class="mdl-menu__item">Refresh</li>
+		                    </a>
+		                    <a href="" onclick="signOut();">
+		                      <li class="mdl-menu__item">Sign Out</li>
+		                    </a>
+		                </ul>
+		              </nav>
+		            </div>
+		          </header>
+		          <div class="mdl-layout__drawer mdc-drawer">
+		            <div class="mdc-drawer__header">
+		                <h3 class="mdc-drawer__title">Navigation</h3>
+		                <h6 class="mdc-drawer__subtitle">Twitter</h6>
+		            </div>
+		            <div class="mdc-drawer__content">
 
-                <button id="appBarHam" class="mdl-button mdl-js-button mdl-button--icon">
-                  <i class="material-icons">more_vert</i>
-                </button>
-                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="appBarHam">
-                    <a href="trending.html">
-                        <li class="mdl-menu__item">Refresh</li>
-                    </a>
-                    <a href="" onclick="signOut();">
-                      <li class="mdl-menu__item">Sign Out</li>
-                    </a>
-                </ul>
-              </nav>
-            </div>
-          </header>
-          <div class="mdl-layout__drawer mdc-drawer">
-            <div class="mdc-drawer__header">
-                <h3 class="mdc-drawer__title">Navigation</h3>
-                <h6 class="mdc-drawer__subtitle">Twitter</h6>
-            </div>
-            <div class="mdc-drawer__content">
+		                <nav class="mdc-list">
+		                    <a class="mdc-list-item" href="index.html" aria-current="page">
+		                        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">home</i>
+		                        <span class="mdc-list-item__text">Home</span>
+		                    </a>
+		                    <a class="mdc-list-item" href="topics.html">
+		                        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">format_list_bulleted</i>
+		                        <span class="mdc-list-item__text">Topics</span>
+		                    </a>
+		                    <a class="mdc-list-item mdc-list-item--activated" href="trending.html">
+		                        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">search</i>
+		                        <span class="mdc-list-item__text">Search</span>
+		                    </a>
+		                    <a class="mdc-list-item" href="contactadmin.html">
+		                        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">contact_mail</i>
+		                        <span class="mdc-list-item__text">Contact Admin</span>
+		                    </a>
+		                </nav>
 
-                <nav class="mdc-list">
-                    <a class="mdc-list-item" href="index.html" aria-current="page">
-                        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">home</i>
-                        <span class="mdc-list-item__text">Home</span>
-                    </a>
-                    <a class="mdc-list-item" href="topics.html">
-                        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">format_list_bulleted</i>
-                        <span class="mdc-list-item__text">Topics</span>
-                    </a>
-                    <a class="mdc-list-item mdc-list-item--activated" href="trending.html">
-                        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">search</i>
-                        <span class="mdc-list-item__text">Search</span>
-                    </a>
-                    <a class="mdc-list-item" href="contactadmin.html">
-                        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">contact_mail</i>
-                        <span class="mdc-list-item__text">Contact Admin</span>
-                    </a>
-                </nav>
+		            </div>
+		            </div>
+						<main class="mdl-layout__content">
+			                <div class="page-content" align="center">
 
-            </div>
-            </div>
-            <main class="mdl-layout__content" ng-app="UsersApp">
+			                    <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+			                      <div class="mdl-tabs__tab-bar">
+			                          <a href="#userSearch-panel" class="mdl-tabs__tab is-active" style="text-decoration: none;">User Search</a>
+			                          <a href="#tweetSearch-panel" class="mdl-tabs__tab" style="text-decoration: none;">Tweet Search</a>
+			                      </div>
 
-                <div class="page-content" ng-controller="UsersController" align="center">
+			                      <div class="mdl-tabs__panel is-active" id="userSearch-panel">
 
-                    <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-                      <div class="mdl-tabs__tab-bar">
-                          <a href="#userSearch-panel" class="mdl-tabs__tab is-active" style="text-decoration: none;">User Search</a>
-                          <a href="#tweetSearch-panel" class="mdl-tabs__tab" style="text-decoration: none;">Tweet Search</a>
-                      </div>
+			                            <br>
 
-                      <div class="mdl-tabs__panel is-active" id="userSearch-panel">
+			                            <div align="center">
 
-                            <br>
+			                                <main class="mdl-layout__content">
 
-                            <div align="center">
+			                                    <div class="input-group" id="searchBar">
 
-                                <main class="mdl-layout__content">
+			                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 
-                                    <div class="input-group" id="searchBar">
+			    										<form ng-submit="search_user();">
+			    	                                        <input class="mdl-textfield__input" type="text" id="userSearchBar">
+			    										</form>
 
-                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+			                                            <label class="mdl-textfield__label" for="userSearchBar">Search</label>
 
-    										<form ng-submit="search_user();">
-    	                                        <input class="mdl-textfield__input" type="text" id="userSearchBar">
-    										</form>
+			                                        </div>
 
-                                            <label class="mdl-textfield__label" for="userSearchBar">Search</label>
+			                                    </div>
 
-                                        </div>
+			                                    <small id="searchHelp" class="form-text text-muted">Enter a search here and press enter</small>
 
-                                    </div>
+			                                </main>
 
-                                    <small id="searchHelp" class="form-text text-muted">Enter a search here and press enter</small>
+			                            </div>
 
-                                </main>
+			                            <!--User Information-->
+			                            <div class="tableWrapper" style="padding: 15px; margin: 15px; overflow-x: scroll;">
+			                                <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+			                                  <thead>
+			                                    <tr>
+			                                      <th class="mdl-data-table__cell--non-numeric" style="font-size: 15px;">User Name</th>
+			                                      <th style="font-size: 15px;">Screen Name</th>
+			                                      <th style="font-size: 15px;"># of friends</th>
+			                                      <th style="font-size: 15px;"># of followers</th>
+												                    <th style="font-size: 15px;"># of tweets</th>
+			                                      <th style="font-size: 15px;"># of favorites</th>
+			                                    </tr>
+			                                  </thead>
+			                                  <tbody>
+			                                    <tr ng-repeat="user in users" ng-click="user_click(user.url)">
+			                                        <th>{{ user.name }}</th>
+													                    <th>{{ user.screen_name }}</th>
+			                                        <th>{{ user.friends_count }}</th>
+			                                        <th>{{ user.followers_count }}</th>
+													                    <th>{{ user.statuses_count }}</th>
+			                                        <th>{{ user.favourites_count }}</th>
+			                                    </tr>
+			                                  </tbody>
+			                                </table>
+			                            </div>
 
-                            </div>
+			                      </div>
+			                      <div class="mdl-tabs__panel" id="tweetSearch-panel">
 
-                            <!--User Information-->
-                            <div class="tableWrapper" style="padding: 15px; margin: 15px; overflow-x: scroll;">
-                                <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-                                  <thead>
-                                    <tr>
-                                      <th class="mdl-data-table__cell--non-numeric" style="font-size: 15px;">User Name</th>
-                                      <th style="font-size: 15px;">Screen Name</th>
-                                      <th style="font-size: 15px;"># of friends</th>
-                                      <th style="font-size: 15px;"># of followers</th>
-									                    <th style="font-size: 15px;"># of tweets</th>
-                                      <th style="font-size: 15px;"># of favorites</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    <tr ng-repeat="user in users" ng-click="user_click(user.url)">
-                                        <th>{{ user.name }}</th>
-										                    <th>{{ user.screen_name }}</th>
-                                        <th>{{ user.friends_count }}</th>
-                                        <th>{{ user.followers_count }}</th>
-										                    <th>{{ user.statuses_count }}</th>
-                                        <th>{{ user.favourites_count }}</th>
-                                    </tr>
-                                  </tbody>
-                                </table>
-                            </div>
+			                            <div align="center">
 
-                      </div>
-                      <div class="mdl-tabs__panel" id="tweetSearch-panel">
+			                                <br>
 
-                            <div align="center">
+			                                <button data-toggle="modal" data-target="#advancedPopup" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="background-color: #03dac5; color: black;">
+			                                  Update Filters
+			                                </button>
 
-                                <br>
+			                                <small id="emailHelp" class="form-text text-muted">(Go here to start the search too)</small>
 
-                                <button data-toggle="modal" data-target="#advancedPopup" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="background-color: #03dac5; color: black;">
-                                  Update Filters
-                                </button>
-
-                                <small id="emailHelp" class="form-text text-muted">(Go here to start the search too)</small>
-
-								<div id="tweet_container">
-		    					</div>
-                            </div>
-						</div>
-                    </div>
-                </div>
+											<div id="tweet_container">
+					    					</div>
+			                            </div>
+									</div>
+			                    </div>
+			                </div>
+						</main>
 
 
 
-                <footer class="mdl-mini-footer" style="margin-top: 500px;">
-                  <div class="mdl-mini-footer__left-section">
-                    <div class="mdl-logo">Copyright Twitter, © 2019</div>
-                    <ul class="mdl-mini-footer__link-list">
-                      <li><a href="#">Help</a></li>
-                      <li><a href="#">Privacy & Terms</a></li>
-                      <li><a href="#">Support</a></li>
-                    </ul>
-                  </div>
-                </footer>
+		                <footer class="mdl-mini-footer" style="margin-top: 500px;">
+		                  <div class="mdl-mini-footer__left-section">
+		                    <div class="mdl-logo">Copyright Twitter, © 2019</div>
+		                    <ul class="mdl-mini-footer__link-list">
+		                      <li><a href="#">Help</a></li>
+		                      <li><a href="#">Privacy & Terms</a></li>
+		                      <li><a href="#">Support</a></li>
+		                    </ul>
+		                  </div>
+		                </footer>
 
-            </main>
+		        </div>
 
-        </div>
+		        <!-- Popup for advanced search -->
+		        <div class="modal fade in" id="advancedPopup" tabindex="-1" role="dialog" aria-labelledby="advancedModalLabel" aria-hidden="true">
+		            <div class="modal-dialog">
+		                <div class="modal-content">
+		                    <div class="modal-header">
 
-        <!-- Popup for advanced search -->
-        <div class="modal fade in" id="advancedPopup" tabindex="-1" role="dialog" aria-labelledby="advancedModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
+		                        <p id="advancedModalLabel" class="modal-title popup">Update Filters</p>
 
-                        <p id="advancedModalLabel" class="modal-title popup">Update Filters</p>
+		                        <button class="mdl-button mdl-js-button mdl-button--icon" data-dismiss="modal" aria-hidden="true">
+		                          <i class="material-icons">close</i>
+		                        </button>
 
-                        <button class="mdl-button mdl-js-button mdl-button--icon" data-dismiss="modal" aria-hidden="true">
-                          <i class="material-icons">close</i>
-                        </button>
+		                    </div>
 
-                    </div>
+		                    <div class="modal-body"> <!-- Iterates through saved history -->
+		                        <form id="advanced_search_form">
+		                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+		                                <input class="mdl-textfield__input" type="text" id="allWord">
+		                                <label class="mdl-textfield__label" for="sample3">Search All Words</label>
+		                            </div>
 
-                    <div class="modal-body"> <!-- Iterates through saved history -->
-                        <form id="advanced_search_form">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="allWord">
-                                <label class="mdl-textfield__label" for="sample3">Search All Words</label>
-                            </div>
+		                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+		                                <input class="mdl-textfield__input" type="text" id="phrase">
+		                                <label class="mdl-textfield__label" for="sample3">Search Exact Phrase</label>
+		                            </div>
 
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="phrase">
-                                <label class="mdl-textfield__label" for="sample3">Search Exact Phrase</label>
-                            </div>
+		                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+		                                <input class="mdl-textfield__input" type="text" id="any_of_these_words">
+		                                <label class="mdl-textfield__label" for="sample3">Search for Multiple Words</label>
+		                            </div>
 
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="any_of_these_words">
-                                <label class="mdl-textfield__label" for="sample3">Search for Multiple Words</label>
-                            </div>
+		                            <small id="emailHelp" class="form-text text-muted">(Space Separated)</small>
 
-                            <small id="emailHelp" class="form-text text-muted">(Space Separated)</small>
+		                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+		                                <input class="mdl-textfield__input" type="text" id="excludeWords">
+		                                <label class="mdl-textfield__label" for="sample3">Exclude Words</label>
+		                            </div>
 
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="excludeWords">
-                                <label class="mdl-textfield__label" for="sample3">Exclude Words</label>
-                            </div>
+		                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+		                                <input class="mdl-textfield__input" type="text" id="hashtags">
+		                                <label class="mdl-textfield__label" for="sample3">Include Hashtags</label>
+		                            </div>
 
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="hashtags">
-                                <label class="mdl-textfield__label" for="sample3">Include Hashtags</label>
-                            </div>
+		                            <br>
+		                            <br>
 
-                            <br>
-                            <br>
+		                            <div class="form-group">
+		                                <select class="form-control" id="sel1">
+		                                    <option value="all" selected="selected">All languages</option>
+		                                    <option disabled="disabled">---</option>
+		                                      <option value="en">English (English)</option>
+		                                      <option value="ja">Japanese (日本語)</option>
+		                                      <option value="fr">French (français)</option>
+		                                      <option value="es">Spanish (español)</option>
+		                                    <option disabled="disabled">---</option>
+		                                      <option value="am">Amharic (አማርኛ)</option>
+		                                      <option value="ar">Arabic (العربية)</option>
+		                                      <option value="hy">Armenian (հայերեն)</option>
+		                                      <option value="bn">Bangla (বাংলা)</option>
+		                                      <option value="bg">Bulgarian (български)</option>
+		                                      <option value="my">Burmese (မြန်မာ)</option>
+		                                      <option value="ckb">Central Kurdish (کوردیی ناوەندی)</option>
+		                                      <option value="zh">Chinese (中文)</option>
+		                                      <option value="da">Danish (dansk)</option>
+		                                      <option value="dv">Divehi (Divehi)</option>
+		                                      <option value="nl">Dutch (Nederlands)</option>
+		                                      <option value="et">Estonian (eesti)</option>
+		                                      <option value="fi">Finnish (suomi)</option>
+		                                      <option value="ka">Georgian (ქართული)</option>
+		                                      <option value="de">German (Deutsch)</option>
+		                                      <option value="el">Greek (Ελληνικά)</option>
+		                                      <option value="gu">Gujarati (ગુજરાતી)</option>
+		                                      <option value="ht">Haitian Creole (Haitian Creole)</option>
+		                                      <option value="he">Hebrew (עברית)</option>
+		                                      <option value="hi">Hindi (हिन्दी)</option>
+		                                      <option value="hu">Hungarian (magyar)</option>
+		                                      <option value="is">Icelandic (íslenska)</option>
+		                                      <option value="id">Indonesian (Indonesia)</option>
+		                                      <option value="it">Italian (italiano)</option>
+		                                      <option value="kn">Kannada (ಕನ್ನಡ)</option>
+		                                      <option value="km">Khmer (ខ្មែរ)</option>
+		                                      <option value="ko">Korean (한국어)</option>
+		                                      <option value="lo">Lao (ລາວ)</option>
+		                                      <option value="lv">Latvian (latviešu)</option>
+		                                      <option value="lt">Lithuanian (lietuvių)</option>
+		                                      <option value="ml">Malayalam (മലയാളം)</option>
+		                                      <option value="mr">Marathi (मराठी)</option>
+		                                      <option value="ne">Nepali (नेपाली)</option>
+		                                      <option value="no">Norwegian (norsk)</option>
+		                                      <option value="or">Odia (ଓଡ଼ିଆ)</option>
+		                                      <option value="ps">Pashto (پښتو)</option>
+		                                      <option value="fa">Persian (فارسی)</option>
+		                                      <option value="pl">Polish (polski)</option>
+		                                      <option value="pt">Portuguese (português)</option>
+		                                      <option value="pa">Punjabi (ਪੰਜਾਬੀ)</option>
+		                                      <option value="ro">Romanian (română)</option>
+		                                      <option value="ru">Russian (русский)</option>
+		                                      <option value="sr">Serbian (српски)</option>
+		                                      <option value="sd">Sindhi (سنڌي)</option>
+		                                      <option value="si">Sinhala (සිංහල)</option>
+		                                      <option value="sl">Slovenian (slovenščina)</option>
+		                                      <option value="sv">Swedish (svenska)</option>
+		                                      <option value="tl">Tagalog (Tagalog)</option>
+		                                      <option value="ta">Tamil (தமிழ்)</option>
+		                                      <option value="te">Telugu (తెలుగు)</option>
+		                                      <option value="th">Thai (ไทย)</option>
+		                                      <option value="bo">Tibetan (བོད་སྐད་)</option>
+		                                      <option value="tr">Turkish (Türkçe)</option>
+		                                      <option value="ur">Urdu (اردو)</option>
+		                                      <option value="ug">Uyghur (ئۇيغۇرچە)</option>
+		                                      <option value="vi">Vietnamese (Tiếng Việt)</option>
+		                                </select>
+		                            </div>
 
-                            <div class="form-group">
-                                <select class="form-control" id="sel1">
-                                    <option value="all" selected="selected">All languages</option>
-                                    <option disabled="disabled">---</option>
-                                      <option value="en">English (English)</option>
-                                      <option value="ja">Japanese (日本語)</option>
-                                      <option value="fr">French (français)</option>
-                                      <option value="es">Spanish (español)</option>
-                                    <option disabled="disabled">---</option>
-                                      <option value="am">Amharic (አማርኛ)</option>
-                                      <option value="ar">Arabic (العربية)</option>
-                                      <option value="hy">Armenian (հայերեն)</option>
-                                      <option value="bn">Bangla (বাংলা)</option>
-                                      <option value="bg">Bulgarian (български)</option>
-                                      <option value="my">Burmese (မြန်မာ)</option>
-                                      <option value="ckb">Central Kurdish (کوردیی ناوەندی)</option>
-                                      <option value="zh">Chinese (中文)</option>
-                                      <option value="da">Danish (dansk)</option>
-                                      <option value="dv">Divehi (Divehi)</option>
-                                      <option value="nl">Dutch (Nederlands)</option>
-                                      <option value="et">Estonian (eesti)</option>
-                                      <option value="fi">Finnish (suomi)</option>
-                                      <option value="ka">Georgian (ქართული)</option>
-                                      <option value="de">German (Deutsch)</option>
-                                      <option value="el">Greek (Ελληνικά)</option>
-                                      <option value="gu">Gujarati (ગુજરાતી)</option>
-                                      <option value="ht">Haitian Creole (Haitian Creole)</option>
-                                      <option value="he">Hebrew (עברית)</option>
-                                      <option value="hi">Hindi (हिन्दी)</option>
-                                      <option value="hu">Hungarian (magyar)</option>
-                                      <option value="is">Icelandic (íslenska)</option>
-                                      <option value="id">Indonesian (Indonesia)</option>
-                                      <option value="it">Italian (italiano)</option>
-                                      <option value="kn">Kannada (ಕನ್ನಡ)</option>
-                                      <option value="km">Khmer (ខ្មែរ)</option>
-                                      <option value="ko">Korean (한국어)</option>
-                                      <option value="lo">Lao (ລາວ)</option>
-                                      <option value="lv">Latvian (latviešu)</option>
-                                      <option value="lt">Lithuanian (lietuvių)</option>
-                                      <option value="ml">Malayalam (മലയാളം)</option>
-                                      <option value="mr">Marathi (मराठी)</option>
-                                      <option value="ne">Nepali (नेपाली)</option>
-                                      <option value="no">Norwegian (norsk)</option>
-                                      <option value="or">Odia (ଓଡ଼ିଆ)</option>
-                                      <option value="ps">Pashto (پښتو)</option>
-                                      <option value="fa">Persian (فارسی)</option>
-                                      <option value="pl">Polish (polski)</option>
-                                      <option value="pt">Portuguese (português)</option>
-                                      <option value="pa">Punjabi (ਪੰਜਾਬੀ)</option>
-                                      <option value="ro">Romanian (română)</option>
-                                      <option value="ru">Russian (русский)</option>
-                                      <option value="sr">Serbian (српски)</option>
-                                      <option value="sd">Sindhi (سنڌي)</option>
-                                      <option value="si">Sinhala (සිංහල)</option>
-                                      <option value="sl">Slovenian (slovenščina)</option>
-                                      <option value="sv">Swedish (svenska)</option>
-                                      <option value="tl">Tagalog (Tagalog)</option>
-                                      <option value="ta">Tamil (தமிழ்)</option>
-                                      <option value="te">Telugu (తెలుగు)</option>
-                                      <option value="th">Thai (ไทย)</option>
-                                      <option value="bo">Tibetan (བོད་སྐད་)</option>
-                                      <option value="tr">Turkish (Türkçe)</option>
-                                      <option value="ur">Urdu (اردو)</option>
-                                      <option value="ug">Uyghur (ئۇيغۇرچە)</option>
-                                      <option value="vi">Vietnamese (Tiếng Việt)</option>
-                                </select>
-                            </div>
+		                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+		                                <input class="mdl-textfield__input" type="text" id="from_these_accounts">
+		                                <label class="mdl-textfield__label" for="sample3">From these accounts</label>
+		                            </div>
 
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="from_these_accounts">
-                                <label class="mdl-textfield__label" for="sample3">From these accounts</label>
-                            </div>
+		                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+		                                <input class="mdl-textfield__input" type="text" id="to_these_accounts">
+		                                <label class="mdl-textfield__label" for="sample3">To these accounts</label>
+		                            </div>
 
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="to_these_accounts">
-                                <label class="mdl-textfield__label" for="sample3">To these accounts</label>
-                            </div>
+		                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+		                                <input class="mdl-textfield__input" type="text" id="mentioning_these_accounts">
+		                                <label class="mdl-textfield__label" for="sample3">Mentioning these accounts</label>
+		                            </div>
 
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="mentioning_these_accounts">
-                                <label class="mdl-textfield__label" for="sample3">Mentioning these accounts</label>
-                            </div>
+		                            <br>
 
-                            <br>
+		                            <div>
+		                                <p>Date Range:</p>
+		                                <a>From</a>
+		                                <input type="date" name="date" id="from">
+		                                <a>to</a>
+		                                <input type="date" name="dateEnd" id="until">
+		                                <br>
+		                                <br>
+		                            </div>
 
-                            <div>
-                                <p>Date Range:</p>
-                                <a>From</a>
-                                <input type="date" name="date" id="from">
-                                <a>to</a>
-                                <input type="date" name="dateEnd" id="until">
-                                <br>
-                                <br>
-                            </div>
+		                        </form>
 
-                        </form>
+								<div class="modal-footer">
 
-						<div class="modal-footer">
+			                        <button data-dismiss="modal" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="background-color: #fc005c;">
+			                          Dismiss
+			                        </button>   <!-- Dismiss Popup -->
 
-	                        <button data-dismiss="modal" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="background-color: #fc005c;">
-	                          Dismiss
-	                        </button>   <!-- Dismiss Popup -->
+			                        <button data-dismiss="modal" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="background-color: #03dac5;" ng-click="search_tweet()">
+			                          Search
+			                        </button>   <!-- Apply Search -->
 
-	                        <button data-dismiss="modal" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="background-color: #03dac5;" onclick="search_tweet()">
-	                          Search
-	                        </button>   <!-- Apply Search -->
+			                    </div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
 
-	                    </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+		        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+		        <script srf="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script> <!-- Google Material Design -->
+		        <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script> <!-- Material Design Lite -->
+		        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		        crossorigin="anonymous"></script>
+				<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-        <script srf="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script> <!-- Google Material Design -->
-        <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script> <!-- Material Design Lite -->
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-		<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+				<script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+				<script src="js/users_app.js"></script>
+				<script src="js/controllers/usersController.js"></script>
+				<script src="js/factories/usersFactory.js"></script>
+				<script src="js/tweet_search.js"></script>
 
-		<script src="https://code.angularjs.org/1.4.3/angular.js"></script>
-		<script src="js/users_app.js"></script>
-		<script src="js/controllers/usersController.js"></script>
-		<script src="js/factories/usersFactory.js"></script>
-		<script src="js/tweet_search.js"></script>
-
-        <script src="js/contact.js"></script>
-        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+		        <script src="js/contact.js"></script>
+		        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+			</div>
+		</main>
 
     </body>
 
