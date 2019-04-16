@@ -20,7 +20,8 @@
     </head>
 
     <body>
-
+		<main ng-app="UsersApp">
+			<div ng-controller="UsersController">
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
           <header class="mdl-layout__header">
             <div class="mdl-layout__header-row">
@@ -73,9 +74,9 @@
 
             </div>
             </div>
-            <main class="mdl-layout__content" ng-app="UsersApp">
+            <main class="mdl-layout__content">
 
-                <div class="page-content" ng-controller="UsersController" align="center">
+                <div class="page-content" align="center">
 
                     <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
                       <div class="mdl-tabs__tab-bar">
@@ -372,10 +373,12 @@
 		<script src="js/controllers/usersController.js"></script>
 		<script src="js/factories/usersFactory.js"></script>
 		<script src="js/tweet_search.js"></script>
+    <script src="js/contact.js"></script>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        
+    </div>
+	</main>
 
-        <script src="js/contact.js"></script>
-        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-    </body>
+ </body>
 
 </html>
