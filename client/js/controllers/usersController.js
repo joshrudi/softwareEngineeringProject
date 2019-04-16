@@ -34,8 +34,6 @@ angular.module('users').controller('UsersController', ['$scope', 'Users',
 				to: $("to").val(),
 			};
 
-			console.log("HI");
-
 			$.ajax({
 				url: "/search_tweets",
 				type: "POST",
