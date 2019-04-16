@@ -104,22 +104,25 @@
         <script src="js/topics.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+		<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 
         <script>
-            var acc = document.getElementsByClassName("accordion");
-            var i;
+			function update_accordions() {
+	            var acc = document.getElementsByClassName("accordion");
+	            var i;
 
-            for (i = 0; i < acc.length; i++) {
-              acc[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                var panel = this.nextElementSibling;
-                if (panel.style.maxHeight){
-                  panel.style.maxHeight = null;
-                } else {
-                  panel.style.maxHeight = panel.scrollHeight + "px";
-                }
-              });
-            }
+	            for (i = 0; i < acc.length; i++) {
+	              acc[i].addEventListener("click", function() {
+	                this.classList.toggle("active");
+	                var panel = this.nextElementSibling;
+	                if (panel.style.maxHeight){
+	                  panel.style.maxHeight = null;
+	                } else {
+	                  panel.style.maxHeight = panel.scrollHeight + "px";
+	                }
+	              });
+	            }
+			}
         </script>
 
     </body>

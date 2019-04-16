@@ -11,11 +11,33 @@ var listingSchema = new Schema({
 	},
 	woeid: {
 		type: Number,
-		required: true,
+		default: 1
 	},
 	region_name: {
 		type: String,
-		required: true,
+		default: "Worldwide"
+	},
+	emails_sent: {
+		type: [
+			{
+				millis: {
+					type: Number,
+					required: true
+				}
+			}
+		],
+		default: [
+			{millis: 0},
+			{millis: 0},
+			{millis: 0},
+			{millis: 0},
+			{millis: 0},
+			{millis: 0},
+			{millis: 0},
+			{millis: 0},
+			{millis: 0},
+			{millis: 0}
+		]
 	}
 });
 
