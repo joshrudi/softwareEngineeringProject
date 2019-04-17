@@ -30,8 +30,8 @@ angular.module('users').controller('UsersController', ['$scope', 'Users',
 				from_these_accounts: $("#from_these_accounts").val(),
 				to_these_accounts: $("#to_these_accounts").val(),
 				mentioning_these_accounts: $("#mentioning_these_accounts").val(),
-				from: $("from").val(),
-				to: $("to").val(),
+				since: $("#from").val(),
+				until: $("#until").val(),
 			};
 
 			$.ajax({

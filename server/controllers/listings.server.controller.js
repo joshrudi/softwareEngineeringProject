@@ -204,7 +204,7 @@ exports.search_user = function(req, res) {
 
 function format_query(q) {
 	var result = '';
-	if (q.written_in) 					result += "lang:" + q.written_in;
+	if (q.written_in != 'all') 					result += "lang:" + q.written_in;
 	if (q.all_of_these_words) 			result += " " + q.all_of_these_words;
 	if (q.this_exact_phrase) 			result += " \"" + q.this_exact_phrase + "\"";
 	if (q.any_of_these_words) 			result += " " + q.any_of_these_words.split(/\s/).join(" OR ");
@@ -220,6 +220,7 @@ function format_query(q) {
 }
 
 exports.search_tweets = function(req, res) {
+	console.log(req.body.query);
 	var query = format_query(req.body.query);
 	T.get('search/tweets', { q: query, count: req.body.count+1 }, function(err, data, response) {
 		data.statuses.pop(); // The last element is garbage for some reason
