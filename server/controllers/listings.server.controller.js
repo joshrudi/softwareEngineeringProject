@@ -26,6 +26,12 @@ Listing = require('../models/listings.server.model.js');
 
 
 exports.send_email = function(req, res) {
+	if (req.body.user_id == null) {
+		res.status(400);
+		res.end("No user id");
+		return;
+	}
+	
 	Listing.findOne({ user_id: req.body.user_id }, function(err, listing) {
 		if (listing == null) {
 			res.status(400);
