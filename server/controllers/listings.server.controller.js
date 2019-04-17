@@ -31,7 +31,7 @@ exports.send_email = function(req, res) {
 		res.end("No user id");
 		return;
 	}
-	
+
 	Listing.findOne({ user_id: req.body.user_id }, function(err, listing) {
 		if (listing == null) {
 			res.status(400);
@@ -214,7 +214,6 @@ exports.search_user = function(req, res) {
 	});
 }
 
-
 function format_query(q) {
 	var result = '';
 	if (q.written_in != 'all') 					result += "lang:" + q.written_in;
@@ -236,7 +235,6 @@ exports.search_tweets = function(req, res) {
 	console.log(req.body.query);
 	var query = format_query(req.body.query);
 	T.get('search/tweets', { q: query, count: req.body.count+1 }, function(err, data, response) {
-		data.statuses.pop(); // The last element is garbage for some reason
 		res.send(data.statuses);
 	});
 }
