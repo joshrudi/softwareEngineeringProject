@@ -148,6 +148,12 @@ exports.get_regions = function(req, res) {
 exports.update_listing = function(req, res) {
 	var upsertData = Listing(req.body);
 
+	if (req.body.user_id == null) {
+		res.status(400);
+		res.end("Error");
+		return;
+	}
+
 	Listing.findOne({ user_id: upsertData.user_id }, function(err, listing) {
 		if (listing == null) {
 			//upsertData.woeid = 1;
@@ -156,6 +162,7 @@ exports.update_listing = function(req, res) {
 
 		} else {
 			upsertData._id = listing._id;
+
 		}
 
 		Listing.update({ user_id: upsertData.user_id }, upsertData, {upsert: true}, function(err, listing) {
