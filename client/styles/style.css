@@ -301,3 +301,7 @@ h3:hover {
   right: 10px;
   z-index: -1;
 }
+
+#searchBar{
+  left: 0!important;
+}
