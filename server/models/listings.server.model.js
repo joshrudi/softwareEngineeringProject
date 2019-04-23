@@ -5,17 +5,39 @@ var mongoose = require('mongoose'),
 /* Create your schema */
 var listingSchema = new Schema({
 	user_id: {
-		type: String,
+		type: Number,
 		required: true,
 		unique: true
 	},
 	woeid: {
 		type: Number,
-		required: true,
+		default: 1
 	},
 	region_name: {
 		type: String,
-		required: true,
+		default: "Worldwide"
+	},
+	emails_sent: {
+		type: [
+			{
+				millis: {
+					type: Number,
+					required: true
+				}
+			}
+		],
+		default: [
+			{millis: 0},
+			{millis: 0},
+			{millis: 0},
+			{millis: 0},
+			{millis: 0},
+			{millis: 0},
+			{millis: 0},
+			{millis: 0},
+			{millis: 0},
+			{millis: 0}
+		]
 	}
 });
 

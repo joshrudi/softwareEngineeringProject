@@ -1,8 +1,4 @@
 angular.module('users').factory('Users', function() {
-	var users = [
-
-	];
-
-	return users;
+	return null;
 });
 console.log("usersFactory.js running");

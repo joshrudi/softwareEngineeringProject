@@ -20,7 +20,8 @@
     </head>
 
     <body>
-
+		<main ng-app="UsersApp">
+			<div ng-controller="UsersController">
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
           <header class="mdl-layout__header">
             <div class="mdl-layout__header-row">
@@ -73,9 +74,9 @@
 
             </div>
             </div>
-            <main class="mdl-layout__content" ng-app="UsersApp">
+            <main class="mdl-layout__content">
 
-                <div class="page-content" ng-controller="UsersController" align="center">
+                <div class="page-content" align="center">
 
                     <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
                       <div class="mdl-tabs__tab-bar">
@@ -148,16 +149,43 @@
                                   Update Filters
                                 </button>
 
-                                <small id="emailHelp" class="form-text text-muted">(Go here to start the search too)</small>
+                                <small id="searchHelp" class="form-text text-muted">(Go here to start the search too)</small>
 
-								<div id="tweet_container">
-		    					</div>
+								<div class="mdl-grid"> <!-- The Main 'Beef' of the grid, displays list of cards with tweet data -->
+
+                                    <div class="grid-container">
+
+                                        <div class="grid">
+                                          <div class="grid-sizer"></div>
+                                            <div ng-repeat="tweet in tweets"> <!-- Iterates though search results -->
+
+                                                <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                                                  <div class="mdl-card__title">
+                                                    <h2 class="mdl-card__title-text">{{tweet.user.name}}</h2>
+                                                  </div>
+                                                  <div class="mdl-card__supporting-text">
+                                                    {{tweet.text}}
+                                                  </div>
+                                                  <div class="mdl-card__actions mdl-card--border">
+                                                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                                                      Get Started
+                                                    </a>
+                                                  </div>
+                                                  <div class="mdl-card__menu">
+                                                    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                                                      <i class="material-icons">share</i>
+                                                    </button>
+                                                  </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-						</div>
+                        </div>
                     </div>
                 </div>
-
-
 
                 <footer class="mdl-mini-footer" style="margin-top: 500px;">
                   <div class="mdl-mini-footer__left-section">
@@ -323,7 +351,7 @@
 	                          Dismiss
 	                        </button>   <!-- Dismiss Popup -->
 
-	                        <button data-dismiss="modal" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="background-color: #03dac5;" onclick="search_tweets()">
+	                        <button data-dismiss="modal" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="background-color: #03dac5;" ng-click="search_tweet()">
 	                          Search
 	                        </button>   <!-- Apply Search -->
 
@@ -344,11 +372,12 @@
 		<script src="js/users_app.js"></script>
 		<script src="js/controllers/usersController.js"></script>
 		<script src="js/factories/usersFactory.js"></script>
-		<script src="js/tweet_search.js"></script>
+    <script src="js/contact.js"></script>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-        <script src="js/contact.js"></script>
-        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+	</main>
 
-    </body>
+ </body>
 
 </html>
