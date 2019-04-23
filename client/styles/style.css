@@ -79,8 +79,7 @@ p.graphTitle {
 }
 
 .accordion:after {
-  font-family: 'Material Icons';
-  content: 'expand_more';
+  content: '\002B';
   color: #777;
   font-weight: bold;
   float: right;
@@ -88,8 +87,7 @@ p.graphTitle {
 }
 
 .active:after {
-  font-family: 'Material Icons';
-  content: 'expand_less';
+  content: "\2212";
 }
 
 .panel {
