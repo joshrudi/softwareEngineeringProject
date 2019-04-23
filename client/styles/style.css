@@ -179,6 +179,50 @@ a {
 .clicked{
   background-color: lightblue;
 }
+
+/* ---- GRID ---- */
+
+/* CSS used in the grid (think items and general sizing/layout) */
+
+
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.grid-sizer {
+  margin-bottom: 50px;
+}
+
+.grid-container {
+
+  
+}
+
+.grid-item {
+  margin-bottom: 50px;
+  margin-left: 1%;
+  margin-right: 1%;
+  float: left;
+  border: 10px;
+  display: block;
+}
+
+/* Mobile and "Thin Window" Styling */
+@media only screen and (max-width: 640px) {
+
+  .grid-item {
+    margin-bottom: 50px;
+    width: 90% !important;
+    margin-left: 5%;
+    margin-right: 5%;
+    float: left;
+    display: block;
+  }
+
+}
+
 .card-deck{
   text-align: center;
   padding: 2em;

@@ -173,29 +173,32 @@
 
                                 <small id="searchHelp" class="form-text text-muted">(Go here to start the search too)</small>
 
-								<div class="mdl-grid"> <!-- The Main 'Beef' of the grid, displays list of cards with tweet data -->
+								<div class="grid"> <!-- The Main 'Beef' of the grid, displays list of cards with tweet data -->
 
                                     <div class="grid-container">
 
                                         <div class="grid">
-                                          <div class="grid-sizer"></div>
+
+                                        <div class="grid-sizer"></div>
+
                                             <div ng-repeat="tweet in tweets"> <!-- Iterates though search results -->
 
-                                                <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                                                <div class="demo-card-wide mdl-card mdl-shadow--2dp grid-item" style="background: url() center / cover; height: 176px;">
                                                   <div class="mdl-card__title">
+                                                    <img src="{{tweet.user.profile_image_url}}" style="border-radius: 50%;">
                                                     <h2 class="mdl-card__title-text">{{tweet.user.name}}</h2>
                                                   </div>
                                                   <div class="mdl-card__supporting-text">
                                                     {{tweet.text}}
                                                   </div>
                                                   <div class="mdl-card__actions mdl-card--border">
-                                                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                                                      Get Started
+                                                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="http://twitter.com/statuses/{{tweet.id_str}}">
+                                                      {{tweet.retweet_count}} people are talking about this!
                                                     </a>
                                                   </div>
                                                   <div class="mdl-card__menu">
                                                     <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                                                      <i class="material-icons">share</i>
+                                                      <i class="material-icons">verified_user</i>
                                                     </button>
                                                   </div>
                                                 </div>
