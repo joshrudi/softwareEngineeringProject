@@ -9,14 +9,32 @@ function update_topics(woeid) {
 			for (var i = 0; i < trend_data.length; i ++) {
 				$("#topic_list").append("<button class='accordion'>" + trend_data[i].name + "</button>");
 				$("#topic_list").append(" \
-				<div class='panel'> \
-					<div class='card-body'> \
-						<div class='container'> \
-							<div class='row' style='text-align:center;' id='section_" + i + "'> \
-							</div> \
-						</div> \
-					</div> \
-				</div>");
+				<div class='grid'>\
+					<div class='grid-container'>\
+						<div class='grid'>\
+							<div class='grid-sizer'></div>\
+								<div class='demo-card-wide mdl-card mdl-shadow--2dp grid-item' style='background: url() center / cover; height: 176px;'>\
+                                  <div class='mdl-card__title'>\
+                                    <img src='{{tweet.user.profile_image_url}}' style='border-radius: 50%;'>\
+                                    <h2 class='mdl-card__title-text'>{{tweet.user.name}}</h2>\
+                                  </div>\
+                                  <div class='mdl-card__supporting-text'>\
+                                    {{tweet.text}}\
+                                  </div>\
+                                  <div class='mdl-card__actions mdl-card--border'>\
+                                    <a class='mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect' href='http://twitter.com/statuses/{{tweet.id_str}}'>\
+                                      {{tweet.retweet_count}} people are talking about this!\
+                                    </a>\
+                                  </div>\
+                                  <div class='mdl-card__menu'>\
+                                    <button class='mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect'>\
+                                      <i class='material-icons'>verified_user</i>\
+                                    </button>\
+                                  </div>\
+                            </div>\
+                        </div>\
+                    </div>\
+                </div>");
 				$.ajax({
 					url: "/get_topic_cards",
 					type: "POST",
