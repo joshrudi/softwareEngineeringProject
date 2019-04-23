@@ -91,6 +91,9 @@ angular.module('users').controller('UsersController', ['$scope', 'Users',
 									}
 								});
 							}
+						},
+						error: function(err) {
+							console.log("ERROR");
 						}
 					});
 				},

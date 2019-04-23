@@ -122,6 +122,7 @@ exports.get_topic_cards = function(req, res) {
 			res.send([]);
 			return;
 		}
+		console.log(data.statuses);
 		res.send({
 			statuses: data.statuses,
 			section: req.body.section,
