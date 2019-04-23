@@ -40,12 +40,13 @@ angular.module('users').controller('UsersController', ['$scope', 'Users',
 				type: "POST",
 				data: {
 					query: query,
-					count: 100
+					count: 10
 				},
 				success: function(data) {
 					$scope.tweets = data;
 					console.log($scope.tweets);
 					$scope.$apply();
+					update_accordions();
 				}
 			});
 		}
@@ -65,7 +66,7 @@ angular.module('users').controller('UsersController', ['$scope', 'Users',
 					$.ajax({
 						url: "/get_trending",
 						type: "POST",
-						data: { woeid: data.woeid, count: 10 },
+						data: { woeid: data.woeid, count: 2 },
 						success: function(data){
 							var trend_data = data;
 
@@ -83,7 +84,7 @@ angular.module('users').controller('UsersController', ['$scope', 'Users',
 											name: trend_data[data.section].name,
 										});
 
-										if ($scope.topics.length == 10) {
+										if ($scope.topics.length == 2) {
 											console.log($scope.topics);
 											$scope.$apply();
 											update_accordions();
@@ -91,6 +92,9 @@ angular.module('users').controller('UsersController', ['$scope', 'Users',
 									}
 								});
 							}
+						},
+						error: function(err) {
+							console.log("ERROR");
 						}
 					});
 				},

@@ -116,12 +116,13 @@ exports.get_trending = function(req, res) {
 
 exports.get_topic_cards = function(req, res) {
 	var num_topic_cards = 10;
-	T.get('search/tweets', { q: req.body.trend_name, count: num_topic_cards, result_type:"popular" }, function(err, data, response) {
+	T.get('search/tweets', { q: req.body.trend_name, tweet_mode:"extended", count: num_topic_cards, result_type:"popular" }, function(err, data, response) {
 		if (data.statuses == null) {
 			res.status(400);
 			res.send([]);
 			return;
 		}
+		console.log(data.statuses);
 		res.send({
 			statuses: data.statuses,
 			section: req.body.section,
@@ -186,7 +187,7 @@ exports.find_listing = function(req, res) {
 }
 
 exports.search_user = function(req, res) {
-	T.get('users/search', { q: req.body.query, count: 30 }, function(err, data, response) {
+	T.get('users/search', { q: req.body.query, count: 30, tweet_mode:"extended"}, function(err, data, response) {
 		var filtered = [];
 		for (var i = 0; i < data.length; i ++) {
 			if (data[i].name.includes(req.body.query) || data[i].screen_name.includes(req.body.query)) {
@@ -218,7 +219,7 @@ function format_query(q) {
 exports.search_tweets = function(req, res) {
 	console.log(req.body.query);
 	var query = format_query(req.body.query);
-	T.get('search/tweets', { q: query, count: req.body.count }, function(err, data, response) {
+	T.get('search/tweets', { q: query, count: req.body.count, tweet_mode:"extended" }, function(err, data, response) {
 		res.send(data.statuses);
 	});
 }

@@ -102,7 +102,7 @@
     										</form>
 
                                         <!-- <label class="mdl-textfield__label" for="userSearchBar">Search</label> -->
-    
+
                                         </div>
                                     </div>
                                 </main>
@@ -124,7 +124,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="user in users | orderBy:'name'" ng-click="user_click(user.url))">
+                                            <tr ng-repeat="user in users | orderBy:'name'" ng-click="user_click(user.url)">
                                                     <th>{{ user.name }}</th>
                                                     <th>{{ user.screen_name }}</th>
                                                     <th>{{ user.friends_count }}</th>
@@ -136,28 +136,6 @@
                                     </table>
 
                                 </div>
-                                <!-- <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp--fixed-header">
-                                  <thead>
-                                    <tr>
-                                      <th class="mdl-data-table__cell--non-numeric" style="font-size: 15px;">User Name</th>
-                                      <th style="font-size: 15px;">Screen Name</th>
-                                      <th style="font-size: 15px;"># of friends</th>
-                                      <th style="font-size: 15px;"># of followers</th>
-									                    <th style="font-size: 15px;"># of tweets</th>
-                                      <th style="font-size: 15px;"># of favorites</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    <tr ng-repeat="user in users | orderBy:'name'" ng-click="user_click(user.url)">
-                                        <th>{{ user.name }}</th>
-										<th>{{ user.screen_name }}</th>
-                                        <th>{{ user.friends_count }}</th>
-                                        <th>{{ user.followers_count }}</th>
-										<th>{{ user.statuses_count }}</th>
-                                        <th>{{ user.favourites_count }}</th>
-                                    </tr>
-                                  </tbody>
-                                </table> -->
                             </div>
 
                       </div>
@@ -183,25 +161,47 @@
 
                                             <div ng-repeat="tweet in tweets"> <!-- Iterates though search results -->
 
-                                                <div class="demo-card-wide mdl-card mdl-shadow--2dp grid-item" style="background: url() center / cover; height: 176px;">
-                                                  <div class="mdl-card__title">
-                                                    <img src="{{tweet.user.profile_image_url}}" style="border-radius: 50%;">
-                                                    <h2 class="mdl-card__title-text">{{tweet.user.name}}</h2>
-                                                  </div>
-                                                  <div class="mdl-card__supporting-text">
-                                                    {{tweet.text}}
-                                                  </div>
-                                                  <div class="mdl-card__actions mdl-card--border">
-                                                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="http://twitter.com/statuses/{{tweet.id_str}}">
-                                                      {{tweet.retweet_count}} people are talking about this!
-                                                    </a>
-                                                  </div>
-                                                  <div class="mdl-card__menu">
-                                                    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                                                      <i class="material-icons">verified_user</i>
-                                                    </button>
-                                                  </div>
-                                                </div>
+												<div class="demo-card-wide mdl-card mdl-shadow--2dp grid-item" style="background: url() center / cover;">
+												  <div class="mdl-card__title">
+													<img src="{{tweet.user.profile_image_url}}" style="border-radius: 50%;">
+													<h2 class="mdl-card__title-text">{{tweet.user.name}}</h2>
+												  </div>
+												  <div class="mdl-card__supporting-text">
+													{{tweet.full_text}}
+												  </div>
+												  <div ng-repeat="media in tweet.entities.media">
+													  <img src="{{media.media_url}}" style="width:100%; height:100%" onerror="console.log('hi')"></img>
+												  </div>
+												  <div class="mdl-card__actions mdl-card--border">
+													<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="http://twitter.com/statuses/{{tweet.id_str}}">
+													  {{tweet.retweet_count}} people are talking about this!
+													</a>
+													<button class="accordion">User Info</button>
+													<div class="panel">
+													  <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+														{{tweet.user.friends_count}} friends
+													  </a>
+													  <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+														{{tweet.user.followers_count}} followers
+													  </a>
+													  <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+														{{tweet.user.statuses_count}} tweets
+													  </a>
+													</div>
+													<button class="accordion">Tweet Info</button>
+													<div class="panel">
+													  <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+														{{tweet.retweet_count}} retweets
+													  </a>
+													  <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+														Created at: {{tweet.created_at}}
+													  </a>
+													  <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+														Favorite count: {{tweet.favorite_count}}
+													  </a>
+													</div>
+												</div>
+												</div>
 
                                             </div>
                                         </div>
@@ -400,6 +400,25 @@
     <script src="js/contact.js"></script>
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
+	<script>
+		function update_accordions() {
+			var acc = document.getElementsByClassName("accordion");
+			var i;
+
+			for (i = 0; i < acc.length; i++) {
+			  acc[i].addEventListener("click", function() {
+				this.classList.toggle("active");
+				var panel = this.nextElementSibling;
+				if (panel.style.maxHeight){
+				  panel.style.maxHeight = null;
+				} else {
+				  panel.style.maxHeight = panel.scrollHeight + "px";
+				}
+			  });
+			}
+		}
+	</script>
+	
     </div>
 	</main>
 
