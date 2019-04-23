@@ -234,7 +234,7 @@ function format_query(q) {
 exports.search_tweets = function(req, res) {
 	console.log(req.body.query);
 	var query = format_query(req.body.query);
-	T.get('search/tweets', { q: query, count: req.body.count+1 }, function(err, data, response) {
+	T.get('search/tweets', { q: query, count: req.body.count }, function(err, data, response) {
 		res.send(data.statuses);
 	});
 }
