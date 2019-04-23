@@ -2,6 +2,7 @@ angular.module('users').controller('UsersController', ['$scope', 'Users',
 	function($scope, Users) {
 		$scope.users = [];
 		$scope.tweets = [];
+		$scope.topics = [];
 
 		$scope.search_user = function() {
 			var query = $("#userSearchBar").val();
@@ -51,6 +52,52 @@ angular.module('users').controller('UsersController', ['$scope', 'Users',
 
 		$scope.user_click = function(url) {
 			window.open(url, '_blank')
+		}
+
+		$scope.update_topics = function() {
+			$.ajax({
+				url: "/find_listing",
+				type: "POST",
+				data: { user_id: read_cookie().user_id },
+				success: function(data) {
+					console.log(data.woeid);
+
+					$.ajax({
+						url: "/get_trending",
+						type: "POST",
+						data: { woeid: data.woeid, count: 10 },
+						success: function(data){
+							var trend_data = data;
+
+							for (var i = 0; i < trend_data.length; i ++) {
+								$.ajax({
+									url: "/get_topic_cards",
+									type: "POST",
+									data: {
+										trend_name: trend_data[i].name,
+										section: i
+									},
+									success: function(data){
+										$scope.topics.push({
+											statuses: data.statuses,
+											name: trend_data[data.section].name,
+										});
+
+										if ($scope.topics.length == 10) {
+											console.log($scope.topics);
+											$scope.$apply();
+											update_accordions();
+										}
+									}
+								});
+							}
+						}
+					});
+				},
+				error: function() {
+					console.log("Could not find user");
+				}
+			});
 		}
 	}
 ]);

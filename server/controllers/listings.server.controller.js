@@ -115,33 +115,17 @@ exports.get_trending = function(req, res) {
 }
 
 exports.get_topic_cards = function(req, res) {
-	var num_topic_cards = 2;
+	var num_topic_cards = 10;
 	T.get('search/tweets', { q: req.body.trend_name, count: num_topic_cards, result_type:"popular" }, function(err, data, response) {
 		if (data.statuses == null) {
 			res.status(400);
 			res.send([]);
 			return;
 		}
-		var html_list = [];
-		recurse_get_topic_cards(data.statuses, html_list, res, req.body.section);
-	});
-}
-
-function recurse_get_topic_cards(statuses, html_list, res, section) {
-	if (statuses.length == 0) {
 		res.send({
-			html_list: html_list,
-			section: section,
+			statuses: data.statuses,
+			section: req.body.section,
 		});
-		return;
-	}
-
-	status = statuses.pop();
-	var url = 'https://twitter.com/statuses/' + status.id_str;
-
-	T.get('statuses/oembed', { id: status.id_str }, function(err, html, response) {
-		html_list.push(html.html);
-		recurse_get_topic_cards(statuses, html_list, res, section);
 	});
 }
 
