@@ -97,24 +97,46 @@
                                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 
     										<form ng-submit="search_user();">
-    	                                        <input class="mdl-textfield__input" type="text" id="userSearchBar">
+                                                <input class="mdl-textfield__input" type="text" id="userSearchBar" placeholder="Search"> <br>
+                                                <input type="submit" id="submitSearch" value="Search">
     										</form>
 
-                                            <label class="mdl-textfield__label" for="userSearchBar">Search</label>
-
+                                        <!-- <label class="mdl-textfield__label" for="userSearchBar">Search</label> -->
+    
                                         </div>
-
                                     </div>
-
-                                    <small id="searchHelp" class="form-text text-muted">Enter a search here and press enter</small>
-
                                 </main>
 
                             </div>
 
                             <!--User Information-->
                             <div class="tableWrapper" style="padding: 15px; margin: 15px; overflow-x: scroll;">
-                                <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>User Name</th>
+                                                <th>Screen Name</th>
+                                                <th># of friends</th>
+                                                <th># of followers</th>
+                                                <th># of tweets </th>
+                                                <th># of favorites</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="user in users | orderBy:'name'" ng-click="user_click(user.url))">
+                                                    <th>{{ user.name }}</th>
+                                                    <th>{{ user.screen_name }}</th>
+                                                    <th>{{ user.friends_count }}</th>
+                                                    <th>{{ user.followers_count }}</th>
+                                                    <th>{{ user.statuses_count }}</th>
+                                                    <th>{{ user.favourites_count }}</th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                <!-- <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp--fixed-header">
                                   <thead>
                                     <tr>
                                       <th class="mdl-data-table__cell--non-numeric" style="font-size: 15px;">User Name</th>
@@ -126,16 +148,16 @@
                                     </tr>
                                   </thead>
                                   <tbody>
-                                    <tr ng-repeat="user in users" ng-click="user_click(user.url)">
+                                    <tr ng-repeat="user in users | orderBy:'name'" ng-click="user_click(user.url)">
                                         <th>{{ user.name }}</th>
-										                    <th>{{ user.screen_name }}</th>
+										<th>{{ user.screen_name }}</th>
                                         <th>{{ user.friends_count }}</th>
                                         <th>{{ user.followers_count }}</th>
-										                    <th>{{ user.statuses_count }}</th>
+										<th>{{ user.statuses_count }}</th>
                                         <th>{{ user.favourites_count }}</th>
                                     </tr>
                                   </tbody>
-                                </table>
+                                </table> -->
                             </div>
 
                       </div>

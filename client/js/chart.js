@@ -1,11 +1,13 @@
 let myChart = document.getElementById('myChart').getContext('2d');
 
 //Global Options
-Chart.defaults.global.defaultFontFamily = 'Lato';
-Chart.defaults.global.defaultFontSize = 18;
-Chart.defaults.global.defaultFontColor = '#777';
+Chart.defaults.global.defaultFontFamily = 'calibri';
+Chart.defaults.global.defaultFontSize = 15;
+//Chart.defaults.global.defaultFontColor = '#777';
+Chart.defaults.global.hover.mode = 'nearest';
 
-var num_topics = 10;
+
+var num_topics = 8;
 var custom_chart = null;
 
 function update_chart(woeid, name) {
@@ -56,16 +58,20 @@ function update_chart(woeid, name) {
 							backgroundColor: topic_colors,
 							borderWidth:1,
 							borderColor: '#777',
-							hoverBorderWidth:3,
+							hoverBorderWidth:1,
 							hoverBorderColor: 'blue',
 							hoverBackgroundColor: topic_colors
 						}]
 					},
 					options:{
+						responsive: true,
+						animation:false,
 						title:{
 							display:true,
 							text: 'Top Trending Topics ' + name,
-							fontSize:25
+							fontSize:25,
+							fontColor: '#444'
+							
 						},
 						legend:{
 							display:false,

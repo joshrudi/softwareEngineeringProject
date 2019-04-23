@@ -132,7 +132,7 @@ a {
 }
 
 /* Mobile and "Thin Window" Styling */
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 740px) {
   .card_width_dynamic {
 
     width: 300px !important;
@@ -149,7 +149,14 @@ a {
     position: relative;
     padding: 0 !important;
   }
-
+ 
+  #smallTable{
+    display: block;
+    position: relative;
+    bottom: 500 !important;
+    top: 0 !important;
+  }
+  
 }
 
 .tweet{
@@ -171,4 +178,57 @@ a {
 
 .clicked{
   background-color: lightblue;
+}
+.card-deck{
+  text-align: center;
+  padding: 2em;
+  text-decoration-color: #aaaaaa;
+}
+.input-group,h3{
+  position: absolute;
+  left: 100px;
+}
+.mainTable{
+  position: absolute;
+  left:100px;
+}
+.indexContainer{
+  position:absolute;
+  right:100px;
+}
+h3{
+  border: none;
+  color: gray;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.3s ease-in-out;
+}
+h3:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+#submitSearch {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 15px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: rgb(63,81,181);
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 2px #999;
+} 
+#submitSearch:hover{
+  background-color: #3e438e
+}
+#submitSearch:active {
+  background-color: #3e538e;
+  box-shadow: 0 2px rgb(102, 102, 102);
+  transform: translateY(2px);
 }
