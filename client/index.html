@@ -19,10 +19,10 @@
         <script src="js/login.js"></script>
 
     </head>
-   
+
     <body ng-app="RegionsApp">
-        
-        
+
+
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
           <header class="mdl-layout__header">
             <div class="mdl-layout__header-row">
@@ -82,9 +82,9 @@
 
               <div class="page-content">
                     <div ng-controller="RegionsController" id="forSmallScreen">
-                      
+
                           <h3>Select Region</h3>
-                          
+
                           <div style="padding: 50px;"></div>
                         <main class="mdl-layout__content">
 
@@ -116,23 +116,16 @@
                             </tbody>
                           </table>
                         </div>
-                      
+
                     </div>
 
                     <div class="container">
-                        <div class="chart-container" id="indexContainer">   
+                        <div class="chart-container" id="indexContainer">
                               <canvas id="myChart"></canvas>
                         </div>
                     </div>
 
                 </div>
-
-            <!-- FAB share button -->
-            <div ng-controller="RegionsController">
-              <button id="share_button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect fixedbutton" style="background-color: #03dac5; color: black;" ng-click="share();" ng-model="query">
-                <i class="material-icons">share</i>
-              </button>
-            </div>
 
             <footer class="mdl-mini-footer" style="margin-top: 500px;">
               <div class="mdl-mini-footer__left-section">
@@ -144,7 +137,7 @@
                 </ul>
               </div>
             </footer>
-          
+
             </main>
 
         </div>
@@ -172,6 +165,6 @@
 
         </script>
     </body>
- 
+
 
 </html>
