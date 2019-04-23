@@ -299,5 +299,5 @@ h3:hover {
   height: auto!important;
   padding-left: 60vh;
   right: 10px;
-  
+  z-index: -1;
 }
