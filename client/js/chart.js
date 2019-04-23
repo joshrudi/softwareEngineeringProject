@@ -7,7 +7,7 @@ Chart.defaults.global.defaultFontSize = 15;
 Chart.defaults.global.hover.mode = 'nearest';
 
 
-var num_topics = 8;
+var num_topics = 10;
 var custom_chart = null;
 
 function update_chart(woeid, name) {
