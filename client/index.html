@@ -22,6 +22,7 @@
 
     <body ng-app="RegionsApp">
 
+
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
           <header class="mdl-layout__header">
             <div class="mdl-layout__header-row">
@@ -79,63 +80,54 @@
             </div>
             <main class="mdl-layout__content">
 
-                <div class="page-content">
+              <div class="page-content">
+                    <div ng-controller="RegionsController" id="forSmallScreen">
 
-                    <br>
+                          <h3>Select Region</h3>
 
-                    <div class="container">
-                      <canvas id="myChart" style="width: 100%;"></canvas>
-                    </div>
+                          <div style="padding: 50px;"></div>
+                        <main class="mdl-layout__content">
 
-                    <div style="padding: 15px;" align="center">
+                          <div class="input-group" id="searchBar">
 
-                      <h3>Select Region</h3>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 
-                      <div ng-controller="RegionsController">
-                        <div align="center">
-                          <main class="mdl-layout__content">
-
-                            <div class="input-group" id="searchBar">
-
-                              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-
-                                <input class="mdl-textfield__input" type="text" id="regionSearch" ng-model="query">
-                                <label class="mdl-textfield__label" for="regionSearch">Search</label>
-
-                              </div>
+                              <input class="mdl-textfield__input" type="text" id="regionSearch" ng-model="query">
+                              <label class="mdl-textfield__label" for="regionSearch">Search</label>
 
                             </div>
 
-                          </main>
-                          <div>
-                            <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp tableWrapper">
-                              <thead>
-                                <tr>
-                                  <th class="mdl-data-table__cell--non-numeric" style="font-size: 15px;">Region Name</th>
-                                  <th style="font-size: 15px;">ID</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr class="clickable" ng-repeat="region in regions | filter:{ name: query }" ng-click="WOEID_clicked(region.woeid, region.name, $event)">
-                                    <th>{{ region.name }}</th>
-                                    <th>{{ region.woeid }}</th>
-                                </tr>
-                              </tbody>
-                            </table>
                           </div>
+
+                        </main>
+                        <div class="mainTable" id="smallTable">
+                          <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp tableWrapper">
+                            <thead>
+                              <tr>
+                                <th class="mdl-data-table__cell--non-numeric" style="font-size: 15px;">Region Name</th>
+                                <th style="font-size: 15px;">ID</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr class="clickable" ng-repeat="region in regions | filter:{ name: query } | orderBy:'name'" ng-click="WOEID_clicked(region.woeid, region.name, $event)">
+                                  <th>{{ region.name }}</th>
+                                  <th>{{ region.woeid }}</th>
+                              </tr>
+                            </tbody>
+                          </table>
                         </div>
-                      </div>
 
                     </div>
 
-                </div>
 
-            <!-- FAB share button -->
-            <div ng-controller="RegionsController">
-              <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect fixedbutton" style="background-color: #03dac5; color: black;" ng-click="share(regions);" ng-model="query">
-                <i class="material-icons">share</i>
-              </button>
-            </div>
+                    <div class="chartContainer">
+                        <div  id="indexContainer">   
+
+                              <canvas id="myChart"></canvas>
+                        </div>
+                    </div>
+
+                </div>
 
             <footer class="mdl-mini-footer" style="margin-top: 500px;">
               <div class="mdl-mini-footer__left-section">
@@ -174,7 +166,7 @@
           }
 
         </script>
-
     </body>
+
 
 </html>

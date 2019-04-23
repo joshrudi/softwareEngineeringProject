@@ -40,7 +40,7 @@
 button.fixedbutton {
     position: fixed;
     bottom: 8%;
-    right: 7%; 
+    right: 7%;
 }
 
 /* Canvas CSS */
@@ -107,11 +107,11 @@ body, html {
   height: 100%;
 }
 
-.bg { 
-  
+.bg {
+
   background-image: url("mountain.jpg");
 
-  height: 100%; 
+  height: 100%;
 
   background-position: center;
   background-repeat: no-repeat;
@@ -132,7 +132,7 @@ a {
 }
 
 /* Mobile and "Thin Window" Styling */
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 740px) {
   .card_width_dynamic {
 
     width: 300px !important;
@@ -148,6 +148,14 @@ a {
     display: block;
     position: relative;
     padding: 0 !important;
+  }
+
+  #smallTable{
+    display: block;
+    position: relative;
+    bottom: 500 !important;
+    top: 0 !important;
+    width: 20%!important;
   }
 
 }
@@ -171,4 +179,129 @@ a {
 
 .clicked{
   background-color: lightblue;
+}
+
+/* ---- GRID ---- */
+
+/* CSS used in the grid (think items and general sizing/layout) */
+
+
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.grid-sizer {
+  margin-bottom: 50px;
+}
+
+.grid-container {
+
+
+}
+
+.grid-item {
+  margin-bottom: 50px;
+  margin-left: 1%;
+  margin-right: 1%;
+  float: left;
+  border: 10px;
+  display: block;
+}
+
+/* Mobile and "Thin Window" Styling */
+@media only screen and (max-width: 640px) {
+
+  .grid-item {
+    margin-bottom: 50px;
+    width: 90% !important;
+    margin-left: 5%;
+    margin-right: 5%;
+    float: left;
+    display: block;
+  }
+
+  .chartContainer{
+    display: block;
+    position: relative;
+    width: 100%!important;
+    height: 50%!important;
+    padding-left: 0!important;
+    left: 0!important;
+    right: 0!important;
+  }
+
+}
+
+.card-deck{
+  text-align: center;
+  padding: 2em;
+  text-decoration-color: #aaaaaa;
+}
+.input-group,h3{
+  position: absolute;
+  left: 100px;
+}
+.mainTable{
+  position: absolute;
+  left:100px;
+}
+.indexContainer{
+
+
+}
+h3{
+  border: none;
+  color: gray;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.3s ease-in-out;
+}
+h3:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+#submitSearch {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 15px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: rgb(63,81,181);
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 2px #999;
+}
+#submitSearch:hover{
+  background-color: #3e438e
+}
+#submitSearch:active {
+  background-color: #3e538e;
+  box-shadow: 0 2px rgb(102, 102, 102);
+  transform: translateY(2px);
+}
+
+#myChart{
+
+}
+
+.chartContainer{
+  display: block;
+  position: relative;
+  width: auto!important;
+  height: auto!important;
+  padding-left: 60vh;
+  right: 10px;
+  z-index: -1;
+}
+
+#trendingSearchBar{
+  left: 0!important;
 }
