@@ -40,7 +40,7 @@ angular.module('users').controller('UsersController', ['$scope', 'Users',
 				type: "POST",
 				data: {
 					query: query,
-					count: 10
+					count: 100
 				},
 				success: function(data) {
 					$scope.tweets = data;
