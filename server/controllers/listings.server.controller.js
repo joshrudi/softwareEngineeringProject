@@ -69,7 +69,7 @@ exports.send_email = function(req, res) {
 						res.end("Something went wrong");
 						return;
 					} else {
-						transporter.sendMail(mailOptions, function(error, info){
+						/*transporter.sendMail(mailOptions, function(error, info){
 							if (error) {
 								console.log(error);
 								res.status(400);
@@ -78,7 +78,7 @@ exports.send_email = function(req, res) {
 								console.log('Email sent: ' + info.response);
 								res.send("OK");
 							}
-						});
+						});*/
 					}
 				});
 			}
@@ -149,13 +149,24 @@ exports.update_listing = function(req, res) {
 
 	Listing.findOne({ user_id: upsertData.user_id }, function(err, listing) {
 		if (listing == null) {
-			//upsertData.woeid = 1;
-			//upsertData.region_name = "Worldwide"; // Defaults
-			//upsertData.emails_sent = ; // Never sent an email
+			upsertData.woeid = 1;
+			upsertData.region_name = "Worldwide"; // Defaults
+			upsertData.emails_sent = [
+				{millis: 0},
+				{millis: 0},
+				{millis: 0},
+				{millis: 0},
+				{millis: 0},
+				{millis: 0},
+				{millis: 0},
+				{millis: 0},
+				{millis: 0},
+				{millis: 0}
+			]; // Never sent an email
 
 		} else {
 			upsertData._id = listing._id;
-
+			if (upsertData.emails_sent == null || upsertData.emails_sent.length != 10) upsertData.emails_sent = listing.emails_sent;
 		}
 
 		Listing.update({ user_id: upsertData.user_id }, upsertData, {upsert: true}, function(err, listing) {
