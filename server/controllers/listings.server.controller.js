@@ -89,6 +89,12 @@ exports.send_email = function(req, res) {
 exports.get_trending = function(req, res) {
 	var num_topics = req.body.count;
 	T.get('trends/place', { id: req.body.woeid }, function(err, data, response) {
+		if (data[0] == null || data[0].trends == null) {
+			res.status(400);
+			res.send([]);
+			return;
+		}
+
 		data = data[0].trends;
 		var best_topics = []
 		for (var i = 0; i < data.length; i++) {
@@ -96,16 +102,17 @@ exports.get_trending = function(req, res) {
 				if (best_topics.length < num_topics) { // Initial topics
 					best_topics.push(data[i]);
 				} else {
-					var worst = 0;
-					for (var k = 1; k < num_topics; k++) { // Find the worst topic in best_topics
-						if (best_topics[k].tweet_volume < best_topics[worst].tweet_volume) {
-							worst = k;
-						}
-					}
+					var worst = num_topics; // The worst topic is the last topic
 
 					if (best_topics[worst].tweet_volume < data[i].tweet_volume) { // Remove the worst and insert data[i]
 						best_topics.splice(worst, 1);
-						best_topics.push(data[i]);
+
+						for (var k = 0; k < num_topics; k ++) {
+							if (best_topics[k].tweet_volume < data[i].tweet_volume) {
+								best_topics.splice(k, 0, data);
+								break;
+							}
+						}
 					}
 				}
 			}
