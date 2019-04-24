@@ -46,7 +46,7 @@ exports.send_email = function(req, res) {
 				to: 'jrudaitis@outlook.com',
 				cc: ["williamjr@ufl.edu", "psanchez1@ufl.edu", "uzunoglualihan@ufl.edu"],
 				subject: 'Issue Report',
-				text: "RESPOND TO: " + email + '\n' + issues
+				text: "MESSAGE FROM: " + name + "\nRESPOND TO: " + email + '\n' + issues
 			};
 
 
