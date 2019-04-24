@@ -139,6 +139,8 @@ exports.get_regions = function(req, res) {
 exports.update_listing = function(req, res) {
 	var upsertData = Listing(req.body);
 
+	console.log(upsertData); // Something is fishy
+
 	if (req.body.user_id == null) {
 		res.status(400);
 		res.end("Error");
