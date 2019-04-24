@@ -96,23 +96,28 @@ exports.get_trending = function(req, res) {
 		}
 
 		data = data[0].trends;
-		var best_topics = []
-		for (var i = 0; i < data.length; i++) {
+		var best_topics = data.slice(0, num_topics).sort(function(a, b) {
+			if (a.tweet_volume < b.tweet_volume) return 1;
+			if (a.tweet_volume > b.tweet_volume) return -1;
+			return 0;
+		});
+		for (var i = num_topics; i < data.length; i++) {
 			if (data[i].tweet_volume != null) {
-				if (best_topics.length < num_topics) { // Initial topics
-					best_topics.push(data[i]);
-				} else {
-					var worst = num_topics; // The worst topic is the last topic
+				var worst = num_topics - 1; // The worst topic is the last topic
 
-					if (best_topics[worst].tweet_volume < data[i].tweet_volume) { // Remove the worst and insert data[i]
-						best_topics.splice(worst, 1);
+				if (best_topics[worst].tweet_volume < data[i].tweet_volume) { // Remove the worst and insert data[i]
+					best_topics.splice(worst, 1);
 
-						for (var k = 0; k < num_topics; k ++) {
-							if (best_topics[k].tweet_volume < data[i].tweet_volume) {
-								best_topics.splice(k, 0, data);
-								break;
-							}
+					var found = 0;
+					for (var k = 0; k < worst; k ++) {
+						if (best_topics[k].tweet_volume < data[i].tweet_volume) {
+							best_topics.splice(k, 0, data[i]);
+							found = 1;
+							break;
 						}
+					}
+					if (!found) {
+						best_topics.splice(worst, 0, data[i]);
 					}
 				}
 			}
