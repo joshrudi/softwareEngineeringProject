@@ -69,7 +69,7 @@ exports.send_email = function(req, res) {
 						res.end("Something went wrong");
 						return;
 					} else {
-						/*transporter.sendMail(mailOptions, function(error, info){
+						transporter.sendMail(mailOptions, function(error, info){
 							if (error) {
 								console.log(error);
 								res.status(400);
@@ -78,7 +78,7 @@ exports.send_email = function(req, res) {
 								console.log('Email sent: ' + info.response);
 								res.send("OK");
 							}
-						});*/
+						});
 					}
 				});
 			}
