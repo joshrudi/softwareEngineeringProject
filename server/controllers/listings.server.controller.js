@@ -163,6 +163,8 @@ exports.update_listing = function(req, res) {
 				res.end("Something went wrong");
 				return;
 			}
+
+			console.log(listing);
 			res.send("OK");
 		});
 	});
