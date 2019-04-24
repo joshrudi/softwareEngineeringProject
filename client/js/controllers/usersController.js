@@ -66,7 +66,7 @@ angular.module('users').controller('UsersController', ['$scope', 'Users',
 					$.ajax({
 						url: "/get_trending",
 						type: "POST",
-						data: { woeid: data.woeid, count: 10 },
+						data: { woeid: data.woeid, count: 8 },
 						success: function(trend_data){
 
 							for (var i = 0; i < trend_data.length; i ++) {
