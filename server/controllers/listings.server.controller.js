@@ -49,6 +49,8 @@ exports.send_email = function(req, res) {
 				text: "MESSAGE FROM: " + name + "\nRESPOND TO: " + email + '\n' + issues
 			};
 
+			console.log(mailOptions);
+
 
 
 			var current_millis = (new Date).getTime();
