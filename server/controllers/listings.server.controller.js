@@ -46,8 +46,10 @@ exports.send_email = function(req, res) {
 				to: 'jrudaitis@outlook.com',
 				cc: ["williamjr@ufl.edu", "psanchez1@ufl.edu", "uzunoglualihan@ufl.edu"],
 				subject: 'Issue Report',
-				text: "RESPOND TO: " + email + '\n' + issues
+				text: "MESSAGE FROM: " + name + "\nRESPOND TO: " + email + '\n' + issues
 			};
+
+			console.log(mailOptions);
 
 
 
@@ -89,23 +91,35 @@ exports.send_email = function(req, res) {
 exports.get_trending = function(req, res) {
 	var num_topics = req.body.count;
 	T.get('trends/place', { id: req.body.woeid }, function(err, data, response) {
+		if (data[0] == null || data[0].trends == null) {
+			res.status(400);
+			res.send([]);
+			return;
+		}
+
 		data = data[0].trends;
-		var best_topics = []
-		for (var i = 0; i < data.length; i++) {
+		var best_topics = data.slice(0, num_topics).sort(function(a, b) {
+			if (a.tweet_volume < b.tweet_volume) return 1;
+			if (a.tweet_volume > b.tweet_volume) return -1;
+			return 0;
+		});
+		for (var i = num_topics; i < data.length; i++) {
 			if (data[i].tweet_volume != null) {
-				if (best_topics.length < num_topics) { // Initial topics
-					best_topics.push(data[i]);
-				} else {
-					var worst = 0;
-					for (var k = 1; k < num_topics; k++) { // Find the worst topic in best_topics
-						if (best_topics[k].tweet_volume < best_topics[worst].tweet_volume) {
-							worst = k;
+				var worst = num_topics - 1; // The worst topic is the last topic
+
+				if (best_topics[worst].tweet_volume < data[i].tweet_volume) { // Remove the worst and insert data[i]
+					best_topics.splice(worst, 1);
+
+					var found = 0;
+					for (var k = 0; k < worst; k ++) {
+						if (best_topics[k].tweet_volume < data[i].tweet_volume) {
+							best_topics.splice(k, 0, data[i]);
+							found = 1;
+							break;
 						}
 					}
-
-					if (best_topics[worst].tweet_volume < data[i].tweet_volume) { // Remove the worst and insert data[i]
-						best_topics.splice(worst, 1);
-						best_topics.push(data[i]);
+					if (!found) {
+						best_topics.splice(worst, 0, data[i]);
 					}
 				}
 			}
@@ -115,7 +129,7 @@ exports.get_trending = function(req, res) {
 }
 
 exports.get_topic_cards = function(req, res) {
-	var num_topic_cards = 10;
+	var num_topic_cards = 100;
 	T.get('search/tweets', { q: req.body.trend_name, tweet_mode:"extended", count: num_topic_cards, result_type:"popular" }, function(err, data, response) {
 		if (data.statuses == null) {
 			res.status(400);
@@ -139,6 +153,8 @@ exports.get_regions = function(req, res) {
 exports.update_listing = function(req, res) {
 	var upsertData = Listing(req.body);
 
+	console.log(upsertData); // Something is fishy
+
 	if (req.body.user_id == null) {
 		res.status(400);
 		res.end("Error");
@@ -147,13 +163,24 @@ exports.update_listing = function(req, res) {
 
 	Listing.findOne({ user_id: upsertData.user_id }, function(err, listing) {
 		if (listing == null) {
-			//upsertData.woeid = 1;
-			//upsertData.region_name = "Worldwide"; // Defaults
-			//upsertData.emails_sent = ; // Never sent an email
+			upsertData.woeid = 1;
+			upsertData.region_name = "Worldwide"; // Defaults
+			upsertData.emails_sent = [
+				{millis: 0},
+				{millis: 0},
+				{millis: 0},
+				{millis: 0},
+				{millis: 0},
+				{millis: 0},
+				{millis: 0},
+				{millis: 0},
+				{millis: 0},
+				{millis: 0}
+			]; // Never sent an email
 
 		} else {
 			upsertData._id = listing._id;
-
+			if (upsertData.emails_sent == null || upsertData.emails_sent.length != 10) upsertData.emails_sent = listing.emails_sent;
 		}
 
 		Listing.update({ user_id: upsertData.user_id }, upsertData, {upsert: true}, function(err, listing) {
@@ -163,6 +190,8 @@ exports.update_listing = function(req, res) {
 				res.end("Something went wrong");
 				return;
 			}
+
+			console.log(listing);
 			res.send("OK");
 		});
 	});
@@ -187,7 +216,7 @@ exports.find_listing = function(req, res) {
 }
 
 exports.search_user = function(req, res) {
-	T.get('users/search', { q: req.body.query, count: 30, tweet_mode:"extended"}, function(err, data, response) {
+	T.get('users/search', { q: req.body.query, count: 1000}, function(err, data, response) {
 		var filtered = [];
 		for (var i = 0; i < data.length; i ++) {
 			if (data[i].name.includes(req.body.query) || data[i].screen_name.includes(req.body.query)) {
@@ -219,7 +248,7 @@ function format_query(q) {
 exports.search_tweets = function(req, res) {
 	console.log(req.body.query);
 	var query = format_query(req.body.query);
-	T.get('search/tweets', { q: query, count: req.body.count, tweet_mode:"extended" }, function(err, data, response) {
+	T.get('search/tweets', { q: query, count: req.body.count, tweet_mode:"extended", result_type:"popular"}, function(err, data, response) {
 		res.send(data.statuses);
 	});
 }

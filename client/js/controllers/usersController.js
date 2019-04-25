@@ -66,9 +66,8 @@ angular.module('users').controller('UsersController', ['$scope', 'Users',
 					$.ajax({
 						url: "/get_trending",
 						type: "POST",
-						data: { woeid: data.woeid, count: 10 },
-						success: function(data){
-							var trend_data = data;
+						data: { woeid: data.woeid, count: 8 },
+						success: function(trend_data){
 
 							for (var i = 0; i < trend_data.length; i ++) {
 								$.ajax({
@@ -84,7 +83,7 @@ angular.module('users').controller('UsersController', ['$scope', 'Users',
 											name: trend_data[data.section].name,
 										});
 
-										if ($scope.topics.length == 10) {
+										if ($scope.topics.length == trend_data.length) {
 											console.log($scope.topics);
 											$scope.$apply();
 											update_accordions();
